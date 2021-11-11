@@ -19,12 +19,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 class MapControllerIntTest {
 
-    @Autowired
-    private MockMvc mvc;
-
-    @Test
-    void getTest() throws Exception {
-        mvc.perform(get("/api/public"))
-                .andExpect(content().string("Test!"));
-    }
+//    @Autowired
+//    private MockMvc mvc;
+//
+//    @Test
+//    void getTest() throws Exception {
+//        mvc.perform(get("/api/public"))
+//                .andExpect(content().string("Test!"));
+//    }
 }
