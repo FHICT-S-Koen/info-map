@@ -43,11 +43,11 @@ jobs:
       working-directory: map-service
 
     - name: Push Docker image
-      run: docker push registry.heroku.com/${{ secrets.HEROKU_APP }}/web
+      run: docker push registry.heroku.com/${{ secrets.MAP_SERVICE_HEROKU_APP }}/web
       working-directory: map-service
 
     - name: Release
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      run: heroku container:release -a ${{ secrets.HEROKU_APP }} web
+      run: heroku container:release -a ${{ secrets.MAP_SERVICE_HEROKU_APP }} web
       working-directory: map-service
