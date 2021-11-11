@@ -1,0 +1,46 @@
+name: CI/CD
+
+on:
+  pull_request:
+    branches: production
+
+jobs: 
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with: 
+          node-version: 12
+      
+      - name: Install node-modules
+        run: npm ci
+
+#       - name: Test
+#         run: npm test
+
+      - name: Build
+        run: npm build
+
+      - name: Build Docker image
+        run: docker build -t registry.heroku.com/${{ secrets.HEROKU_APP }}/web:latest 
+              --build-arg REACT_APP_AUTH0_DOMAIN=${{ secrets.INFO_MAP_AUTH0_DOMAIN }} 
+              --build-arg REACT_APP_AUTH0_CLIENT_KEY=${{ secrets.REACT_APP_AUTH0_CLIENT_KEY }} 
+              --build-arg REACT_APP_AUTH0_AUDIENCE=${{ secrets.INFO_MAP_AUTH0_AUDIENCE }} .
+        
+      - name: Docker image info
+        run: docker images
+
+      - name: Login to container registry
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: heroku container:login
+
+      - name: Push Docker image
+        run: docker push registry.heroku.com/${{ secrets.HEROKU_APP }}/web
+      
+      - name: Release
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: heroku container:release -a ${{ secrets.HEROKU_APP }} web

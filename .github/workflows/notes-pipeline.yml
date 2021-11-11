@@ -1,0 +1,47 @@
+name: CI/CD
+
+on:
+  pull_request:
+    branches: production
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Update local toolchain
+      run: |
+        rustup update
+        rustup install nightly
+
+    - name: Toolchain info
+      run: |
+        cargo --version
+        rustc --version
+
+    # - name: Test
+    #   run: |
+    #     cargo test --workspace
+    
+    - name: Build Docker image
+      run: docker build -t registry.heroku.com/${{ secrets.HEROKU_APP }}/web:latest 
+            --build-arg DATABASE_URL=${{ secrets.DATABASE_URL }}
+            --build-arg AUTHORITY=${{ secrets.INFO_MAP_AUTH0_DOMAIN }} .
+
+    - name: Docker image info
+      run: docker images
+
+    - name: Login to container registry
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      run: heroku container:login
+
+    - name: Push Docker image
+      run: docker push registry.heroku.com/${{ secrets.HEROKU_APP }}/web
+
+    - name: Release
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      run: heroku container:release -a ${{ secrets.HEROKU_APP }} web
