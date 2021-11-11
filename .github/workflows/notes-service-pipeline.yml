@@ -9,6 +9,7 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    working-directory: notes-service
 
     steps:
     - uses: actions/checkout@v2
