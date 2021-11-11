@@ -24,12 +24,12 @@ jobs:
       working-directory: map-service
 
     - name: Build Docker image
-      run: docker build -t registry.heroku.com/${{ secrets.HEROKU_APP }}/web:latest 
+      run: docker build -t registry.heroku.com/${{ secrets.MAP_SERVICE_HEROKU_APP }}/web:latest 
             --build-arg DOMAIN=${{ secrets.INFO_MAP_AUTH0_DOMAIN }}
             --build-arg AUDIENCE=${{ secrets.INFO_MAP_AUTH0_AUDIENCE }} 
-            --build-arg DB_URL=${{ secrets.DB_URL }} 
-            --build-arg DB_USERNAME=${{ secrets.DB_USERNAME }} 
-            --build-arg DB_PASSWORD=${{ secrets.DB_PASSWORD }} .
+            --build-arg DB_URL=${{ secrets.MAP_SERVICE_DB_URL }} 
+            --build-arg DB_USERNAME=${{ secrets.MAP_SERVICE_DB_USERNAME }} 
+            --build-arg DB_PASSWORD=${{ secrets.MAP_SERVICE_DB_PASSWORD }} .
       working-directory: map-service
 
     - name: Docker image info

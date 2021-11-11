@@ -28,7 +28,7 @@ jobs:
         working-directory: client
 
       - name: Build Docker image
-        run: docker build -t registry.heroku.com/${{ secrets.HEROKU_APP }}/web:latest 
+        run: docker build -t registry.heroku.com/${{ secrets.CLIENT_HEROKU_APP }}/web:latest 
               --build-arg REACT_APP_AUTH0_DOMAIN=${{ secrets.INFO_MAP_AUTH0_DOMAIN }} 
               --build-arg REACT_APP_AUTH0_CLIENT_KEY=${{ secrets.REACT_APP_AUTH0_CLIENT_KEY }} 
               --build-arg REACT_APP_AUTH0_AUDIENCE=${{ secrets.INFO_MAP_AUTH0_AUDIENCE }} .
