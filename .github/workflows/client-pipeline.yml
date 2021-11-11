@@ -9,7 +9,6 @@ on:
 jobs: 
   build-and-deploy:
     runs-on: ubuntu-latest
-    working-directory: client
     
     steps:
       - uses: actions/checkout@v2
@@ -19,31 +18,38 @@ jobs:
       
       - name: Install node-modules
         run: npm ci
+        working-directory: client
 
 #       - name: Test
 #         run: npm test
 
       - name: Build
         run: npm build
+        working-directory: client
 
       - name: Build Docker image
         run: docker build -t registry.heroku.com/${{ secrets.HEROKU_APP }}/web:latest 
               --build-arg REACT_APP_AUTH0_DOMAIN=${{ secrets.INFO_MAP_AUTH0_DOMAIN }} 
               --build-arg REACT_APP_AUTH0_CLIENT_KEY=${{ secrets.REACT_APP_AUTH0_CLIENT_KEY }} 
               --build-arg REACT_APP_AUTH0_AUDIENCE=${{ secrets.INFO_MAP_AUTH0_AUDIENCE }} .
+        working-directory: client
         
       - name: Docker image info
         run: docker images
+        working-directory: client
 
       - name: Login to container registry
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         run: heroku container:login
+        working-directory: client
 
       - name: Push Docker image
         run: docker push registry.heroku.com/${{ secrets.HEROKU_APP }}/web
+        working-directory: client
       
       - name: Release
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         run: heroku container:release -a ${{ secrets.HEROKU_APP }} web
+        working-directory: client
