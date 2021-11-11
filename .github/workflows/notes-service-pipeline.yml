@@ -5,7 +5,6 @@ on:
     branches: production
     paths:
       - "notes-service/**"
-      - ".github/workflows/notes-service-pipeline.yml"
 
 jobs:
   build-and-deploy:

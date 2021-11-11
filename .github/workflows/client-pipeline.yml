@@ -5,7 +5,6 @@ on:
     branches: production
     paths:
       - "client/**"
-      - ".github/workflows/client-pipeline.yml"
 
 jobs: 
   build-and-deploy:
@@ -19,6 +18,7 @@ jobs:
       
       - name: Install node-modules
         run: npm ci
+        working-directory: client
 
 #       - name: Test
 #         run: npm test
