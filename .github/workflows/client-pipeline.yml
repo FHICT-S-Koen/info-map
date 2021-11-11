@@ -5,6 +5,7 @@ on:
     branches: production
     paths:
       - "client/**"
+      - ".github/workflows/client-pipeline.yml"
 
 jobs: 
   build-and-deploy:
