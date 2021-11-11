@@ -9,7 +9,6 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    working-directory: notes-service
 
     steps:
     - uses: actions/checkout@v2
@@ -18,11 +17,13 @@ jobs:
       run: |
         rustup update
         rustup install nightly
+      working-directory: notes-service
 
     - name: Toolchain info
       run: |
         cargo --version
         rustc --version
+      working-directory: notes-service
 
     # - name: Test
     #   run: |
@@ -32,19 +33,24 @@ jobs:
       run: docker build -t registry.heroku.com/${{ secrets.HEROKU_APP }}/web:latest 
             --build-arg DATABASE_URL=${{ secrets.DATABASE_URL }}
             --build-arg AUTHORITY=${{ secrets.INFO_MAP_AUTH0_DOMAIN }} .
+      working-directory: notes-service
 
     - name: Docker image info
       run: docker images
+      working-directory: notes-service
 
     - name: Login to container registry
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       run: heroku container:login
+      working-directory: notes-service
 
     - name: Push Docker image
       run: docker push registry.heroku.com/${{ secrets.HEROKU_APP }}/web
+      working-directory: notes-service
 
     - name: Release
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       run: heroku container:release -a ${{ secrets.HEROKU_APP }} web
+      working-directory: notes-service
