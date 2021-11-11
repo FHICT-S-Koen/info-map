@@ -9,6 +9,7 @@ on:
 jobs: 
   build-and-deploy:
     runs-on: ubuntu-latest
+    working-directory: client
     
     steps:
       - uses: actions/checkout@v2
@@ -18,7 +19,6 @@ jobs:
       
       - name: Install node-modules
         run: npm ci
-        working-directory: client
 
 #       - name: Test
 #         run: npm test
