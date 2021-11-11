@@ -1,4 +1,4 @@
-name: CI/CD
+name: map-service CI/CD
 
 on:
   pull_request:
@@ -10,25 +10,22 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    
-    - name: Update local toolchain
-      run: |
-        rustup update
-        rustup install nightly
+    - name: Set up JDK 11
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+        distribution: 'adopt'
+        cache: maven
+    - name: Build with Maven
+      run: mvn --update-snapshots verify
 
-    - name: Toolchain info
-      run: |
-        cargo --version
-        rustc --version
-
-    # - name: Test
-    #   run: |
-    #     cargo test --workspace
-    
     - name: Build Docker image
       run: docker build -t registry.heroku.com/${{ secrets.HEROKU_APP }}/web:latest 
-            --build-arg DATABASE_URL=${{ secrets.DATABASE_URL }}
-            --build-arg AUTHORITY=${{ secrets.INFO_MAP_AUTH0_DOMAIN }} .
+            --build-arg DOMAIN=${{ secrets.INFO_MAP_AUTH0_DOMAIN }}
+            --build-arg AUDIENCE=${{ secrets.INFO_MAP_AUTH0_AUDIENCE }} 
+            --build-arg DB_URL=${{ secrets.DB_URL }} 
+            --build-arg DB_USERNAME=${{ secrets.DB_USERNAME }} 
+            --build-arg DB_PASSWORD=${{ secrets.DB_PASSWORD }} .
 
     - name: Docker image info
       run: docker images
