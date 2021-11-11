@@ -30,8 +30,8 @@ jobs:
     #     cargo test --workspace
     
     - name: Build Docker image
-      run: docker build -t registry.heroku.com/${{ secrets.HEROKU_APP }}/web:latest 
-            --build-arg DATABASE_URL=${{ secrets.DATABASE_URL }}
+      run: docker build -t registry.heroku.com/${{ secrets.NOTES_SERVICES_HEROKU_APP }}/web:latest 
+            --build-arg DATABASE_URL=${{ secrets.NOTES_SERVICES_DATABASE_URL }}
             --build-arg AUTHORITY=${{ secrets.INFO_MAP_AUTH0_DOMAIN }} .
       working-directory: notes-service
 
