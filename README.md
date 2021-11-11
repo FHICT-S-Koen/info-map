@@ -1,5 +1,4 @@
 # Semester 3
-[<- back to home](../README.md)
 
 ## Table of contents
 - [About](#About)
@@ -105,13 +104,13 @@ After this the workflows are pretty much the same only the --build-args are diff
     run: heroku container:release -a ${{ secrets.HEROKU_APP }} web
 ```
 
-files: [client-pipeline](code/workflows/client/pipeline.yml), [map-service-pipeline](code/workflows/map-service/pipeline.yml), [notes-service-pipeline](code/workflows/notes-service/pipeline.yml)
+files: [client-pipeline](.github/workflows/client-pipeline.yml), [map-service-pipeline](.github/workflows/map-pipeline.yml), [notes-service-pipeline](.github/workflows/notes-pipeline.yml)
 
 **Dockerfiles**
 
 As for my dockerfiles they're completely different to each other. My client and map-service both use just a single stage, which means that those final images are quite large and less secure, because there's a lot more tooling available on them. For my notes-service dockerfile I made use of a multistage process. First I get a base image with all the necessary tooling to build my app, and then I pull a new image which is very small. Then I copy everything over that's needed to run the application and start the application from ENTRYPOINT, because using CMD won't work without a shell.
 
-files: [client-dockerfile](code/workflows/client/dockerfile), [map-service-dockerfile](code/workflows/map-service/dockerfile), [notes-service-dockerfile](code/workflows/notes-service/dockerfile)
+files: [client-dockerfile](client/dockerfile), [map-service-dockerfile](map-service/dockerfile), [notes-service-dockerfile](notes-service/dockerfile)
 
 ### Professional
 
