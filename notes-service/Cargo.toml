@@ -1,0 +1,20 @@
+[package]
+name = "notes-service"
+version = "0.1.0"
+edition = "2018"
+
+[dependencies]
+actix-web = "*"
+actix-web-httpauth = "*"
+chrono = { version = "*", features = ["serde"] }
+derive_more = "*"
+diesel = { version = "*", features = ["postgres","uuidv07", "r2d2", "chrono"] }
+dotenv = "*"
+futures = "*"
+r2d2 = "*"
+serde = "*"
+serde_derive = "*"
+serde_json = "*"
+actix-service = "*"
+alcoholic_jwt = "*"
+reqwest = { version = "*", features = ["blocking", "json"] }
