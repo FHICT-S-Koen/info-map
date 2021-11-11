@@ -46,11 +46,11 @@ jobs:
       working-directory: notes-service
 
     - name: Push Docker image
-      run: docker push registry.heroku.com/${{ secrets.HEROKU_APP }}/web
+      run: docker push registry.heroku.com/${{ secrets.NOTES_SERVICES_HEROKU_APP }}/web
       working-directory: notes-service
 
     - name: Release
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      run: heroku container:release -a ${{ secrets.HEROKU_APP }} web
+      run: heroku container:release -a ${{ secrets.NOTES_SERVICES_HEROKU_APP }} web
       working-directory: notes-service
