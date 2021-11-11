@@ -3,6 +3,8 @@ name: client CI/CD
 on:
   pull_request:
     branches: production
+    paths:
+      - "client/**"
 
 jobs: 
   build-and-deploy:
