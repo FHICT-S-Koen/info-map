@@ -118,6 +118,6 @@ files: [client-dockerfile](client/dockerfile), [map-service-dockerfile](map-serv
 
 Question 1: How does WebAssembly impact performance in the client?
 
-Question 2: 
+Question 2: How to make an docker image as secure as possible?
 
 ## Reflection
