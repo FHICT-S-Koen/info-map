@@ -20,7 +20,7 @@ An “infinite“ map focused on mainly storing notes that could come in handy s
 ### Software-quality
 
 ### CI-CD
-_(keep in mind that testing still needs to be implemented)_
+_(Keep in mind that testing still needs to be implemented. I will also be looking into SonarCloud or SonarQube for static code analysis.)_
 
 **GitHub actions**
 All of this projects workflows start like this. I set the workflow name and trigger it on a pull request to the production branch. I define a single job that both builds and deploys the application.
@@ -116,5 +116,8 @@ files: [client-dockerfile](client/dockerfile), [map-service-dockerfile](map-serv
 
 ## Research
 
+Question 1: How does WebAssembly impact performance in the client?
+
+Question 2: 
 
 ## Reflection
