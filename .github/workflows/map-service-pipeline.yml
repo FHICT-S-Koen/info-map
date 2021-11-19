@@ -27,12 +27,14 @@ jobs:
         path: ~/.sonar/cache
         key: ${{ runner.os }}-sonar
         restore-keys: ${{ runner.os }}-sonar
+      working-directory: map-service
     
     - name: Build and analyze
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=FHICT-S-Koen_info-map
+      working-directory: map-service
 
     - name: Build Docker image
       run: docker build -t registry.heroku.com/${{ secrets.MAP_SERVICE_HEROKU_APP }}/web:latest 
