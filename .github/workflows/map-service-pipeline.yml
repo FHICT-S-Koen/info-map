@@ -1,11 +1,11 @@
 name: map-service CI/CD
 
 on:
+  workflow_dispatch:
   pull_request:
     branches: production
     paths:
       - "map-service/**"
-  workflow_dispatch:
 
 jobs:
   build-and-deploy:
