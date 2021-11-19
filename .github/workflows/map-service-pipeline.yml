@@ -27,7 +27,6 @@ jobs:
         path: ~/.sonar/cache
         key: ${{ runner.os }}-sonar
         restore-keys: ${{ runner.os }}-sonar
-      working-directory: map-service
     
     - name: Build and analyze
       env:
