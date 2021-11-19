@@ -24,7 +24,7 @@ jobs:
           args: >
             -Dsonar.organization=fhict-s-koen
             -Dsonar.projectKey=FHICT-S-Koen_info-map
-            -Dsonar.sources=client
+            -Dsonar.sources=./client
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
