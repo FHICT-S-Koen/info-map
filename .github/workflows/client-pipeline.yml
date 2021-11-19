@@ -20,10 +20,11 @@ jobs:
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
-        args: >
-          -Dsonar.organization=fhict-s-koen
-          -Dsonar.projectKey=FHICT-S-Koen_info-map
-          -Dsonar.sources=client
+        with:
+          args: >
+            -Dsonar.organization=fhict-s-koen
+            -Dsonar.projectKey=FHICT-S-Koen_info-map
+            -Dsonar.sources=client
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
