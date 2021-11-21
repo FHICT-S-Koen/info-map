@@ -1,10 +1,14 @@
 name: notes-service CI/CD
 
 on:
+  push:
+    branches: production
+    paths:
+      - 'notes-service/**'
   pull_request:
     branches: production
     paths:
-      - "notes-service/**"
+      - 'notes-service/**'
 
 jobs:
   build-and-deploy:
