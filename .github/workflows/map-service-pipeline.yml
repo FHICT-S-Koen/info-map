@@ -1,14 +1,10 @@
 name: map-service CI/CD
 
 on:
-  push:
-    branches: production
-    paths:
-      - 'map-service/**'
   pull_request:
     branches: production
     paths:
-      - 'map-service/**'
+      - 'map-service/*'
 
 jobs:
   build-and-deploy:
