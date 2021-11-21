@@ -11,7 +11,7 @@ export default function Fetch() {
 
   const handleClick = async() => {
     const accessToken = await getAccessTokenSilently({
-      audience: `https://${domain}/api/v2/`, 
+      audience: `https://${domain}/api/v2/`,
       scope: 'read:current_user'
     })
     const response = await axios.get(`${apiURL}/private`, {
@@ -20,7 +20,7 @@ export default function Fetch() {
       }})
     setState(response.data)
     console.log(state)
-  } 
+  }
 
   return <button onClick={handleClick}>fetch</button>
 }
