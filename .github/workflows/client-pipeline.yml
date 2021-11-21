@@ -1,10 +1,14 @@
 name: client CI/CD
 
 on:
+  push:
+    branches: production
+    paths:
+      - 'client/**'
   pull_request:
     branches: production
     paths:
-      - "client/**"
+      - 'client/**'
 
 jobs: 
   build-and-deploy:
