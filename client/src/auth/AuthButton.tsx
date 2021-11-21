@@ -7,4 +7,4 @@ export default function AuthButton() {
 
   if (isLoading) return <div className="text-green-400 p-2">loading ...</div>
   else return isAuthenticated ? <LogoutButton /> : <LoginButton />
-};
+}
