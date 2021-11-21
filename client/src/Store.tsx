@@ -13,14 +13,14 @@ type InitialContext = {
 
 const initialContextState: InitialContext = {
   state: initialState,
-  setState: (state: SetStateAction<InitialState>) => {}
+  setState: (state: SetStateAction<InitialState>) => state
 }
 
 export const Context = createContext(initialContextState)
 
 const StoreProvider: FC = ({ children }) => {
   const [state, setState] = useState(initialContextState.state)
-  
+
   return <Context.Provider value={{state, setState}}>
     {children}
   </Context.Provider>

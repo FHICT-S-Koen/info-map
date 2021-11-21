@@ -7,7 +7,7 @@ const Example = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     store.setState({...Context, text: e.target.value})
   }
-  
+
   return <><div>You typed: {store.state.text}</div><input type="text" onChange={handleChange} /></>
 }
 
