@@ -20,7 +20,7 @@ An “infinite“ map focused on mainly storing notes that could come in handy s
 ### Software-quality
 
 ### CI-CD
-_(Keep in mind that testing still needs to be implemented. I will also be looking into SonarCloud or SonarQube for static code analysis.)_
+_(Keep in mind that testing still needs to be implemented.)_
 
 **GitHub actions**
 All of this projects workflows start like this. I set the workflow name and trigger it on a pull request to the production branch. I define a single job that both builds and deploys the application.
@@ -116,8 +116,29 @@ files: [client-dockerfile](client/dockerfile), [map-service-dockerfile](map-serv
 
 ## Research
 
-Question 1: How does WebAssembly impact performance in the client?
+### Wasm performance impact
+How does WebAssembly impact performance in the client?
+  - What are the capabilities of WebAssembly in the client?
+  - Where does WebAssembly improve performance the most?
+  - 
 
-Question 2: How to make an docker image as secure as possible?
+#### Method
+
+#### Answers
+
+### Secure docker image
+How to make an docker image as secure as possible?
+  - How to harden a image?
+  - How to securely pass secrets to your container?
+  - 
+
+#### Method
+
+#### Answers
+
+### Sources
+[10 Docker Security Best Practices](https://snyk.io/blog/10-docker-image-security-best-practices/)
 
 ## Reflection
+
+
