@@ -1,8 +1,5 @@
-/* NOSONAR */
 @tailwind base;
-/* NOSONAR */
 @tailwind components;
-/* NOSONAR */
 @tailwind utilities;
 
 body {
