@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: production
     paths:
-      - 'map-service/*'
+      - "map-service/**"
 
 jobs:
   build-and-deploy:
