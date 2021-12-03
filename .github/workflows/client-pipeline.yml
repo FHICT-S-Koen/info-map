@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: production
     paths:
-      - "client/**"
+      - 'client/**'
 
 jobs: 
   build-and-deploy:

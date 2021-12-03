@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: production
     paths:
-      - "notes-service/**"
+      - 'notes-service/**'
 
 jobs:
   build-and-deploy:
