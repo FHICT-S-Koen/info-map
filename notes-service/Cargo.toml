@@ -18,3 +18,4 @@ serde_json = "*"
 actix-service = "*"
 alcoholic_jwt = "*"
 reqwest = { version = "*", features = ["blocking", "json"] }
+eureka-client = "*"

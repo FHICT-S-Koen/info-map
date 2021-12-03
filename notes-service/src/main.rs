@@ -6,6 +6,8 @@ use actix_web_httpauth::{
     middleware::HttpAuthentication
 };
 
+extern crate eureka_client;
+
 #[macro_use]
 extern crate diesel;
 use diesel::prelude::*;
@@ -18,6 +20,7 @@ mod errors;
 mod handlers;
 mod models;
 mod schema;
+mod discovery;
 
 use handlers::{
     add_note, 
@@ -62,8 +65,9 @@ async fn main() -> std::io::Result<()> {
         let auth = HttpAuthentication::bearer(validator);
         App::new()
             .wrap(auth)
+            .data(discovery::init_eureka(port))
             .data(pool.clone())
-            .service(scope("/api/v1")
+            .service(scope("/api/v1/note")
                 .service(get_notes)
                 .service(get_note_by_id)
                 .service(add_note)
