@@ -20,7 +20,6 @@ An “infinite“ map focused on mainly storing notes that could come in handy s
 ### Software-quality
 
 ### CI-CD
-_(Keep in mind that testing still needs to be implemented.)_
 
 **GitHub actions**
 All of this projects workflows start like this. I set the workflow name and trigger it on a pull request to the production branch. I define a single job that both builds and deploys the application.
