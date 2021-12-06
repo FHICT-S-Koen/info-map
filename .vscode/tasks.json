@@ -1,0 +1,78 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+    {
+      "label": "Start apps",
+      "dependsOn": [
+        "client", 
+        "discovery-server",
+        "gateway",
+        "map-service",
+        "notes-service"
+      ],
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
+    },
+		{
+      "label": "client",
+      "type": "shell",
+      "command": "npm run start",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+		  },
+      "options": {
+        "cwd": "${workspaceFolder}/client"
+      }
+		},
+    {
+      "label": "discovery-server",
+      "type": "shell",
+      "command": "gradle bootRun",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+		  },
+      "options": {
+        "cwd": "${workspaceFolder}/discovery-server"
+      }
+		},
+    {
+      "label": "gateway",
+      "type": "shell",
+      "command": "gradle bootRun",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+		  },
+      "options": {
+        "cwd": "${workspaceFolder}/gateway"
+      }
+		},
+    {
+      "label": "map-service",
+      "type": "shell",
+      "command": "gradle bootRun",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+		  },
+      "options": {
+        "cwd": "${workspaceFolder}/map-service"
+      }
+		},
+    {
+      "label": "notes-service",
+      "type": "shell",
+      "command": "cargo run",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+		  },
+      "options": {
+        "cwd": "${workspaceFolder}/notes-service"
+      }
+		}
+	]
+}
