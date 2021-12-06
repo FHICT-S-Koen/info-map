@@ -1,13 +1,13 @@
-package com.infomap.mapservice;
+package com.infomap.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MapServiceApplication {
+public class GatewayApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MapServiceApplication.class, args);
+        SpringApplication.run(GatewayApplication.class, args);
     }
 
 }

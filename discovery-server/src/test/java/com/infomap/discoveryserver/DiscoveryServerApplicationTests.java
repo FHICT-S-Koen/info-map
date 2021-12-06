@@ -1,10 +1,10 @@
-package com.infomap.mapservice;
+package com.infomap.discoveryserver;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MapServiceApplicationTests {
+class DiscoveryServerApplicationTests {
 
     @Test
     void contextLoads() {

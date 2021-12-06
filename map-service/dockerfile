@@ -1,20 +1,22 @@
-FROM maven:3-jdk-11-slim
+FROM gradle:jdk11
 
 WORKDIR /app
 
 # Copy required project files
+COPY build.gradle settings.gradle /app/
 COPY src /app/src
-COPY pom.xml /app
 
 # Set enivornment variables
 ARG DB_URL
 ARG DB_USERNAME
 ARG DB_PASSWORD
-ARG DOMAIN
-ARG AUDIENCE
+
+ENV DB_URL=$DB_URL
+ENV DB_USERNAME=$DB_USERNAME
+ENV DB_PASSWORD=$DB_PASSWORD
 
 # Build for production
-RUN mvn -Dspring.profiles.active=prod -DDB_URL=${DB_URL} -DDB_USERNAME=${DB_USERNAME} -DDB_PASSWORD=${DB_PASSWORD} -DDOMAIN=${DOMAIN} -DAUDIENCE=${AUDIENCE} --update-snapshots package
+RUN gradle --no-daemon build
 
 # Start
-CMD ["java","-jar","/app/target/map-service-0.0.1-SNAPSHOT.jar"]
+CMD ["java","-jar","/app/build/libs/map-service-0.0.1-SNAPSHOT.jar"]

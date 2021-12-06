@@ -1,0 +1,28 @@
+server:
+  port: 6969
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: map-service
+          uri: lb://map-service
+          predicates:
+            - Path=/api/v1/map/**
+        - id: notes-service
+          uri: lb://notes-service
+          predicates:
+            - Path=/api/v1/note
+#  security:
+#    oauth2:
+#      resourceserver:
+#        jwt:
+#          issuer-uri: ${DOMAIN}
+#          audience: ${DOMAIN}api/v2/
