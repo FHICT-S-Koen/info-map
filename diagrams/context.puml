@@ -1,0 +1,12 @@
+@startuml C4_Elements
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+LAYOUT_WITH_LEGEND()
+
+Person(user, "User", "A user with an account.")
+System(info_map, "Info-map", "Provides a map where the user(s) can save their notes.")
+System_Ext(auth, "Identity provider", "The identity provider for authorization.")
+
+Rel(info_map, auth, "Makes API calls to", "JSON/HTTPS")
+Rel(user, info_map, "Views there info-map, and makes changes to it.")
+@enduml

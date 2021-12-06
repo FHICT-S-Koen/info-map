@@ -1,0 +1,41 @@
+@startuml C4_Elements
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+LAYOUT_WITH_LEGEND()
+
+Person(user, "User", "A user with an account.")
+
+System_Ext(auth, "Auth0 Identity provider", "Provides authtentication via JWT tokens.")
+' System_Ext(cdn, "CDN", "The CDN stores the notes images.")
+
+System_Boundary(boundry, "Info-map"){
+	Container(spa, "Single-Page Application", "React + TypeScript", "Provides the user's info-map(s) via the web browser.")
+
+	Container(gateway, "Gateway", "Java + Spring Cloud Gateway", "Passes data along to the front-end and controls authorization.")
+
+	Container(discovery, "Discovery server", "Java + Spring Eureka Server", "Keeps track of registered services.")
+	
+	Container(map_service, "Map service", "Java + Spring Boot", "Retrieves the map data.")
+	ContainerDb(map_db, "Map database", "PostgreSQL", "Stores users maps.")
+
+	Container(note_service, "Note service", "Rust + Actix-web", "Retrieves the note data.")
+	ContainerDb(note_db, "Note database", "PostgreSQL", "Stores note data.")
+}
+
+Rel_D(user, spa, "Views their info-map, and makes changes to it.")
+
+Rel_D(spa, gateway, "Makes API calls to", "JSON/HTTPS")
+Rel_L(spa, auth, "Makes API calls to", "JSON/HTTPS")
+
+Rel_R(gateway, discovery, "Gets list of registered services", "JSON/HTTPS")
+Rel_R(gateway, auth, "Makes API calls to", "JSON/HTTPS")
+' Rel(gateway, map_service, "Makes API calls to", "JSON/HTTPS")
+' Rel(gateway, note_service, "Makes API calls to", "JSON/HTTPS")
+
+Rel_U(map_service, discovery, "Registers to", "JSON/HTTPS")
+Rel_D(map_service, map_db, "Reads from and writes to.")
+
+Rel_U(note_service, discovery, "Registers to", "JSON/HTTPS")
+' Rel_L(note_service, cdn, "Makes API calls to", "JSON/HTTPS")
+Rel_D(note_service, note_db, "Reads from and writes to.")
+@enduml

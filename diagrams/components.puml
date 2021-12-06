@@ -1,0 +1,26 @@
+@startuml C4_Elements
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+LAYOUT_WITH_LEGEND()
+
+Container(spa, "Single-Page Application", "React + TypeScript", "Provides the info-map functionality to the user via the web browser.")
+
+Container_Boundary(boundry, "API Application"){
+	Component(authController, "Sign in Controller", "Spring MVC Rest Controller", "Allows the user to sign in to their account.")
+	Component(dataController, "Info-map data Controller", "Spring MVC Rest Controller", "Sends the requested data to the SPA, or receives new or edited data.")
+	Component(dataAccess, "Data Access Component", "Spring Bean", "Retrieves data from cache or database and gives it to the Info-map data controller.")
+}
+ContainerDb(cache, "Cache", "Redis", "Caches already retrieved data for faster respone time.")
+ContainerDb(db, "Database", "PostgreSQL", "Stores users info-map data.")
+Container_Ext(auth, "Identity provider", "Auth0", "The identity provider for authorization.")
+
+Rel(spa, authController, "Makes API calls to", "JSON/HTTPS")
+Rel(spa, dataController, "Makes API calls to", "JSON/HTTPS")
+
+Rel(authController, auth, "Makes API calls to", "JSON/HTTPS")
+
+Rel(dataController, dataAccess, "Uses")
+Rel(dataAccess, cache, "Reads from and writes to")
+Rel(dataAccess, db, "Reads from and writes to")
+
+@enduml
