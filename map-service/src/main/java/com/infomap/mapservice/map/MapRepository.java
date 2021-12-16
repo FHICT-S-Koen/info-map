@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface MapRepository extends JpaRepository<Map, Long> {
+public interface MapRepository extends JpaRepository<Map, String> {
 
-    Optional<Map> findMapByName(String name);
+    Optional<Map> findMapByUserId(String userId);
 }
