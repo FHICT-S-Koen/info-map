@@ -9,6 +9,7 @@ actix-web-httpauth = "*"
 chrono = { version = "*", features = ["serde"] }
 derive_more = "*"
 diesel = { version = "*", features = ["postgres","uuidv07", "r2d2", "chrono"] }
+uuid = { version = "*", features = ["serde", "v4"] }
 dotenv = "*"
 futures = "*"
 r2d2 = "*"

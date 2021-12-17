@@ -23,10 +23,10 @@ mod schema;
 mod discovery;
 
 use handlers::{
-    add_note, 
-    delete_note, 
-    get_note_by_id, 
-    get_notes
+    // add_note, 
+    // delete_note, 
+    // get_note_by_id, 
+    get_notes_by_map_id
 };
 
 async fn validator(req: ServiceRequest, credentials: BearerAuth) -> Result<ServiceRequest, Error> {
@@ -64,14 +64,14 @@ async fn main() -> std::io::Result<()> {
     HttpServer::new(move || {
         let auth = HttpAuthentication::bearer(validator);
         App::new()
-            .wrap(auth)
+            // .wrap(auth)
             .data(discovery::init_eureka(port))
             .data(pool.clone())
             .service(scope("/api/v1/note")
-                .service(get_notes)
-                .service(get_note_by_id)
-                .service(add_note)
-                .service(delete_note)
+                .service(get_notes_by_map_id)
+                // .service(get_note_by_id)
+                // .service(add_note)
+                // .service(delete_note)
         )
             
     })

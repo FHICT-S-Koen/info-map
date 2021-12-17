@@ -1,6 +1,7 @@
 table! {
     notes (id) {
-        id -> Int4,
+        id -> Uuid,
+        map_id -> Uuid,
         title -> Text,
     }
 }
