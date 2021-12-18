@@ -1,0 +1,7 @@
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+CREATE TABLE notes (
+	id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+	map_id UUID NOT NULL,
+	title TEXT NOT NULL
+)

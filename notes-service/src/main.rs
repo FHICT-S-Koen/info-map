@@ -1,3 +1,8 @@
+#[macro_use]
+extern crate diesel;
+
+extern crate eureka_client;
+
 use std::pin::Pin;
 
 use actix_web::{dev::ServiceRequest, web::scope, App, Error, HttpServer};
@@ -6,10 +11,6 @@ use actix_web_httpauth::{
     middleware::HttpAuthentication
 };
 
-extern crate eureka_client;
-
-#[macro_use]
-extern crate diesel;
 use diesel::prelude::*;
 use diesel::r2d2::{self, ConnectionManager};
 
@@ -23,7 +24,7 @@ mod schema;
 mod discovery;
 
 use handlers::{
-    // add_note, 
+    add_note, 
     // delete_note, 
     // get_note_by_id, 
     get_notes_by_map_id
@@ -65,12 +66,12 @@ async fn main() -> std::io::Result<()> {
         let auth = HttpAuthentication::bearer(validator);
         App::new()
             // .wrap(auth)
-            .data(discovery::init_eureka(port))
+            .data(discovery::init_eureka(port)) // api can't be called when registering to non existing eureka server
             .data(pool.clone())
             .service(scope("/api/v1/note")
                 .service(get_notes_by_map_id)
+                .service(add_note)
                 // .service(get_note_by_id)
-                // .service(add_note)
                 // .service(delete_note)
         )
             
