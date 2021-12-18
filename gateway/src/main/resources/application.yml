@@ -19,7 +19,7 @@ spring:
         - id: notes-service
           uri: lb://notes-service
           predicates:
-            - Path=/api/v1/note
+            - Path=/api/v1/note/**
 #  security:
 #    oauth2:
 #      resourceserver:
