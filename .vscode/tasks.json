@@ -10,9 +10,9 @@
         "map-service",
         "notes-service"
       ],
-      "runOptions": {
-        "runOn": "folderOpen"
-      }
+      // "runOptions": {
+      //   "runOn": "default"
+      // }
     },
 		{
       "label": "client",
@@ -73,6 +73,19 @@
       "options": {
         "cwd": "${workspaceFolder}/notes-service"
       }
-		}
+		},
+
+    {
+      "label": "test-map-service",
+      "type": "shell",
+      "command": "./gradlew test",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+		  },
+      "options": {
+        "cwd": "${workspaceFolder}/map-service"
+      }
+		},
 	]
 }
