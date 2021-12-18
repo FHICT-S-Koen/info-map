@@ -52,12 +52,12 @@
       "react-hooks"
     ],
     "rules": {
-      "no-extra-semi": "error",
-      "indent": [ "error", 2 ],
-      "quotes": [ "error", "single" ],
-      "dot-notation": "error",
+      "no-extra-semi": "warn",
+      "indent": [ "warn", 2 ],
+      "quotes": [ "warn", "single" ],
+      "dot-notation": "warn",
       "no-console": "warn",
-      "no-trailing-spaces": "error"
+      "no-trailing-spaces": "warn"
     },
     "settings": {
       "react": {
