@@ -6,7 +6,7 @@ export default class MapService {
 
   public static async getUserMap(userId: string): Promise<Map> {
     const response = await axios.get<Map>(`${this.API_URL}/map/${userId}`)
-    return response.data
+    return Object.setPrototypeOf(response.data, Map.prototype)
   }
 
   public static async createUserMap(map: Map): Promise<Map> {

@@ -3,19 +3,18 @@ import { useEffect, useState } from 'react'
 import Map from '../objects/Map'
 import Note from '../objects/Note'
 import MapService from '../services/MapService'
+import NoteService from '../services/NoteService'
 
 export default function Body() {
   const { isAuthenticated, user } = useAuth0()
-  const [mapState, setMapState] = useState<Map>()
-  const [notesState, setNotesState] = useState<Note[]>([new Note('test', 'test')])
+  const [notesState, setNotesState] = useState<Note[]>([])
 
   useEffect(() => {
 
     if (isAuthenticated)
-      (async () => setMapState(
-        await MapService.getUserMap(`${user?.email}`)
-          .catch(async () => await MapService.createUserMap(new Map(`${user?.email}`)))
-      ))()
+      MapService.getUserMap('test')
+        .catch(() => MapService.createUserMap(new Map('test')))
+        .then(async map => setNotesState(await NoteService.getMapNotes(map.getId)))
 
   }, [isAuthenticated, user?.email])
 
