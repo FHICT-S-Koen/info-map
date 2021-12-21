@@ -1,20 +1,16 @@
 #[macro_use]
 extern crate diesel;
 
-extern crate eureka_client;
-
-use std::pin::Pin;
-
-use actix_web::{dev::ServiceRequest, web::scope, App, Error, HttpServer};
-use actix_web_httpauth::{
-    extractors::{AuthenticationError, bearer::{BearerAuth, Config}}, 
-    middleware::HttpAuthentication
-};
-
 use diesel::prelude::*;
 use diesel::r2d2::{self, ConnectionManager};
 
 pub type Pool = r2d2::Pool<ConnectionManager<PgConnection>>;
+
+extern crate eureka_client;
+
+use actix_web::{web::scope, App, HttpServer};
+use actix_web_httpauth::middleware::HttpAuthentication;
+use auth::validator;
 
 mod auth;
 mod errors;
@@ -29,23 +25,6 @@ use handlers::{
     // get_note_by_id, 
     get_notes_by_map_id
 };
-
-async fn validator(req: ServiceRequest, credentials: BearerAuth) -> Result<ServiceRequest, Error> {
-    let config = req
-        .app_data::<Config>()
-        .map(|data| Pin::new(data).get_ref().clone())
-        .unwrap_or_else(Default::default);
-    match auth::validate_token(credentials.token()) {
-        Ok(res) => {
-            if res {
-                Ok(req)
-            } else {
-                Err(AuthenticationError::from(config).into())
-            }
-        }
-        Err(_) => Err(AuthenticationError::from(config).into()),
-    }
-}
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
