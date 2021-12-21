@@ -117,6 +117,14 @@ files: [client-dockerfile](client/dockerfile), [map-service-dockerfile](map-serv
 
 ## Research
 
+### UX
+How can you get rid of as many user inputs as possible in an UI?
+  - ...
+
+#### Method
+
+#### Answers
+
 ### Wasm performance impact
 How does WebAssembly impact performance in the client?
   - What are the capabilities of WebAssembly in the client?
