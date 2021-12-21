@@ -6,17 +6,19 @@ import MapService from '../services/MapService'
 import NoteService from '../services/NoteService'
 
 export default function Body() {
-  const { isAuthenticated, user } = useAuth0()
+  const {isAuthenticated, user} = useAuth0()
   const [notesState, setNotesState] = useState<Note[]>([])
+  const [userIdState, setUserIdState] = useState<string | undefined>()
 
   useEffect(() => {
-
-    if (isAuthenticated)
-      MapService.getUserMap('test')
-        .catch(() => MapService.createUserMap(new Map('test')))
+    setUserIdState(user?.sub?.replace('|', ''))
+    if (isAuthenticated && !!userIdState) {
+      MapService.getUserMap(userIdState)
         .then(async map => setNotesState(await NoteService.getMapNotes(map.getId)))
+        .catch(() => MapService.createUserMap(new Map(userIdState)))
+    }
 
-  }, [isAuthenticated, user?.email])
+  }, [isAuthenticated, user?.sub, userIdState])
 
   return <>{
     isAuthenticated ? <>{notesState.map((note, index) => (
