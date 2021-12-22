@@ -15,7 +15,7 @@ struct Claims {
     exp: usize,
 }
 
-pub fn validate_token(token: &str) -> Result<bool, ServiceError> {
+fn validate_token(token: &str) -> Result<bool, ServiceError> {
     let authority = std::env::var("AUTHORITY").expect("AUTHORITY must be set");
     let jwks = fetch_jwks(&format!("{}{}", authority.as_str(), ".well-known/jwks.json"))
         .expect("failed to fetch jwks");
