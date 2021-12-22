@@ -10,15 +10,7 @@ spring:
       ddl-auto: create-drop
   application:
     name: map-service
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: ${DOMAIN}
 
-auth0:
-  audience: ${AUDIENCE}
-  
 server:
   port: ${PORT:8080}
   error:
