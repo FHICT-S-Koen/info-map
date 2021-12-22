@@ -2,6 +2,8 @@ package com.infomap.mapservice.map;
 
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -20,7 +22,7 @@ public class MapController {
     }
 
     @PostMapping
-    public Map createUserMap(@Valid @RequestBody Map map) {
-        return mapService.createUserMap(map);
+    public ResponseEntity<Map> createUserMap(@Valid @RequestBody Map map) {
+        return new ResponseEntity<>(mapService.createUserMap(map), HttpStatus.CREATED);
     }
 }
