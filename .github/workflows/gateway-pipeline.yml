@@ -10,7 +10,7 @@ defaults:
     working-directory: gateway
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -35,10 +35,10 @@ jobs:
       run: ./gradlew build --info
       working-directory: gateway
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
+  # deploy:
+  #   runs-on: ubuntu-latest
+  #   needs: build
+  #   steps:
     - name: Build Docker image
       run: docker build -t registry.heroku.com/${{ secrets.GATEWAY_HEROKU_APP }}/web:latest .
 

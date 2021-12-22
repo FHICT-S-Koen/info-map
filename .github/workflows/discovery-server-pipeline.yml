@@ -10,7 +10,7 @@ defaults:
     working-directory: discovery-server
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -34,10 +34,10 @@ jobs:
     - name: Build and test
       run: ./gradlew build --info
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
+  # deploy:
+  #   runs-on: ubuntu-latest
+  #   needs: build
+  #   steps:
     - name: Build Docker image
       run: docker build -t registry.heroku.com/${{ secrets.DISCOVERY-SERVER_HEROKU_APP }}/web:latest .
 
