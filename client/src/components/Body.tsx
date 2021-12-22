@@ -17,8 +17,8 @@ export default function Body() {
         .then(async map => setNotesState(await NoteService.getMapNotes(map.getId)))
         .catch(() => MapService.createUserMap(new Map(userIdState)))
     }
-    if (isAuthenticated)
-      console.log(getAccessTokenSilently())
+    // if (isAuthenticated)
+    //   console.log(getAccessTokenSilently())
   }, [getAccessTokenSilently, isAuthenticated, user?.sub, userIdState])
 
   return <>{
