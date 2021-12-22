@@ -29,7 +29,11 @@ jobs:
     # - name: Test
     #   run: |
     #     cargo test --workspace
-    
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
     - name: Build Docker image
       run: docker build -t registry.heroku.com/${{ secrets.NOTES_SERVICES_HEROKU_APP }}/web:latest 
             --build-arg DATABASE_URL=${{ secrets.NOTES_SERVICES_DATABASE_URL }}
@@ -38,10 +42,6 @@ jobs:
     - name: Docker image info
       run: docker images
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
     - name: Login to container registry
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}

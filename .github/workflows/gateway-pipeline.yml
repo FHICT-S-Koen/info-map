@@ -36,16 +36,16 @@ jobs:
       run: ./gradlew build --info
       working-directory: gateway
 
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
     - name: Build Docker image
       run: docker build -t registry.heroku.com/${{ secrets.GATEWAY_HEROKU_APP }}/web:latest .
 
     - name: Docker image info
       run: docker images
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
     - name: Login to container registry
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}

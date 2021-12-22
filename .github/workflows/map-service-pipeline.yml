@@ -45,6 +45,10 @@ jobs:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_MAP_SERVICE }}
       run: ./gradlew build sonarqube --info
 
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
     - name: Build Docker image
       run: docker build -t registry.heroku.com/${{ secrets.MAP_SERVICE_HEROKU_APP }}/web:latest 
             --build-arg DOMAIN=${{ secrets.INFO_MAP_AUTH0_DOMAIN }}
@@ -56,10 +60,6 @@ jobs:
     - name: Docker image info
       run: docker images
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
     - name: Login to container registry
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
