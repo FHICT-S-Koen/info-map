@@ -23,8 +23,4 @@ public class Map {
     @NotBlank
     @Column(nullable = false, unique = true)
     private String userId;
-
-    public Map(String userId) {
-        this.userId = userId;
-    }
 }
