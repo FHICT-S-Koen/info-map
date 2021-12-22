@@ -33,7 +33,6 @@ jobs:
     
     - name: Build and test
       run: ./gradlew build --info
-      working-directory: gateway
 
   # deploy:
   #   runs-on: ubuntu-latest
