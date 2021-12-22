@@ -5,6 +5,9 @@ on:
     branches: production
     paths:
       - 'map-service/**'
+defaults: 
+  run: 
+    working-directory: map-service
 
 jobs:
   build:
@@ -28,7 +31,6 @@ jobs:
         path: ~/.sonar/cache
         key: ${{ runner.os }}-sonar
         restore-keys: ${{ runner.os }}-sonar
-      working-directory: map-service
     
     - name: Cache Gradle packages
         uses: actions/cache@v2
@@ -36,14 +38,12 @@ jobs:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: ${{ runner.os }}-gradle
-      working-directory: map-service
     
     - name: Build and analyze
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_MAP_SERVICE }}
       run: ./gradlew build sonarqube --info
-      working-directory: map-service
 
     - name: Build Docker image
       run: docker build -t registry.heroku.com/${{ secrets.MAP_SERVICE_HEROKU_APP }}/web:latest 
@@ -52,11 +52,9 @@ jobs:
             --build-arg DB_URL=${{ secrets.MAP_SERVICE_DB_URL }} 
             --build-arg DB_USERNAME=${{ secrets.MAP_SERVICE_DB_USERNAME }} 
             --build-arg DB_PASSWORD=${{ secrets.MAP_SERVICE_DB_PASSWORD }} .
-      working-directory: map-service
 
     - name: Docker image info
       run: docker images
-      working-directory: map-service
 
   deploy:
     runs-on: ubuntu-latest
@@ -66,14 +64,11 @@ jobs:
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       run: heroku container:login
-      working-directory: map-service
 
     - name: Push Docker image
       run: docker push registry.heroku.com/${{ secrets.MAP_SERVICE_HEROKU_APP }}/web
-      working-directory: map-service
 
     - name: Release
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       run: heroku container:release -a ${{ secrets.MAP_SERVICE_HEROKU_APP }} web
-      working-directory: map-service

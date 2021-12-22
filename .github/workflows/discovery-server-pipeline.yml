@@ -5,6 +5,9 @@ on:
     branches: production
     paths:
       - 'discovery-server/**'
+defaults: 
+  run: 
+    working-directory: discovery-server
 
 jobs:
   build:
@@ -28,19 +31,15 @@ jobs:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: ${{ runner.os }}-gradle
-      working-directory: discovery-server
     
     - name: Build and test
       run: ./gradlew build --info
-      working-directory: discovery-server
 
     - name: Build Docker image
       run: docker build -t registry.heroku.com/${{ secrets.DISCOVERY-SERVER_HEROKU_APP }}/web:latest .
-      working-directory: discovery-server
 
     - name: Docker image info
       run: docker images
-      working-directory: discovery-server
 
   deploy:
     runs-on: ubuntu-latest
@@ -50,14 +49,11 @@ jobs:
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       run: heroku container:login
-      working-directory: discovery-server
 
     - name: Push Docker image
       run: docker push registry.heroku.com/${{ secrets.DISCOVERY-SERVER_HEROKU_APP }}/web
-      working-directory: discovery-server
 
     - name: Release
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       run: heroku container:release -a ${{ secrets.DISCOVERY-SERVER_HEROKU_APP }} web
-      working-directory: discovery-server
