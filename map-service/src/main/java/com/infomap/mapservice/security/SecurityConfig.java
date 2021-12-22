@@ -37,23 +37,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .mvcMatchers(HttpMethod.GET, "/api/v1/map/**").permitAll()
                 .mvcMatchers(HttpMethod.POST, "/api/v1/map/**").permitAll()
                 .anyRequest().authenticated()
-//                .and().cors().configurationSource(corsConfigurationSource())
                 .and().oauth2ResourceServer().jwt().decoder(jwtDecoder())
                 .jwtAuthenticationConverter(jwtAuthenticationConverter());
-    }
-
-    CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedMethods(List.of(
-                HttpMethod.GET.name(),
-                HttpMethod.PUT.name(),
-                HttpMethod.POST.name(),
-                HttpMethod.DELETE.name()
-        ));
-
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration.applyPermitDefaultValues());
-        return source;
     }
 
     JwtDecoder jwtDecoder() {

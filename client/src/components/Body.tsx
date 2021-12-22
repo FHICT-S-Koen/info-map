@@ -6,7 +6,7 @@ import MapService from '../services/MapService'
 import NoteService from '../services/NoteService'
 
 export default function Body() {
-  const {isAuthenticated, user} = useAuth0()
+  const {isAuthenticated, user, getAccessTokenSilently} = useAuth0()
   const [notesState, setNotesState] = useState<Note[]>([])
   const [userIdState, setUserIdState] = useState<string | undefined>()
 
@@ -17,8 +17,9 @@ export default function Body() {
         .then(async map => setNotesState(await NoteService.getMapNotes(map.getId)))
         .catch(() => MapService.createUserMap(new Map(userIdState)))
     }
-
-  }, [isAuthenticated, user?.sub, userIdState])
+    if (isAuthenticated)
+      console.log(getAccessTokenSilently())
+  }, [getAccessTokenSilently, isAuthenticated, user?.sub, userIdState])
 
   return <>{
     isAuthenticated ? <>{notesState.map((note, index) => (
