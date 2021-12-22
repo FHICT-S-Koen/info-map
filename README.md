@@ -14,4 +14,4 @@ The idea of this project is that it's an extension of your brain, by having one 
 ## Features
 | Feature | Status |
 | ------- | ------ |
-| Making notes | In progress #30 #36 |
+| Making notes | In progress [#30](https://github.com/FHICT-S-Koen/info-map/issues/30) [#36](https://github.com/FHICT-S-Koen/info-map/issues/36) |
