@@ -1,0 +1,1 @@
+INSERT INTO public.map(id, user_id) VALUES ('0120b3e1-3b88-4652-9904-89d324da5cb6', 'test');
