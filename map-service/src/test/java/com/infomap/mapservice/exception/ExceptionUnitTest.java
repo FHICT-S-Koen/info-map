@@ -22,10 +22,4 @@ public class ExceptionUnitTest {
         assertThat(response.getErrors().get(0).getField()).isEqualTo(expectedField);
         assertThat(response.getErrors().get(0).getMessage()).isEqualTo(expectedMessage);
     }
-
-    @Test
-    void should() {
-        // given
-
-    }
 }
