@@ -2,6 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.6.1'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+    id 'org.sonarqube' version '3.3'
 }
 
 group = 'com.info-map'
@@ -37,4 +38,12 @@ dependencyManagement {
 
 test {
     useJUnitPlatform()
+}
+
+sonarqube {
+  properties {
+    property "sonar.projectKey", "fhict-s-koen_info-map_map-service"
+    property "sonar.organization", "fhict-s-koen"
+    property "sonar.host.url", "https://sonarcloud.io"
+  }
 }
