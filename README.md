@@ -1,7 +1,7 @@
 # Info-map
 
 ## About
-This project aims to be an extension of your brain, that can store easily accessible notes you have made or want to make. This is all done within a single page by providing you with an “infinite” map together with many useful features.
+This application aims to store easily accessible notes you have made or want to make, by providing you with an “infinite” map together with many useful features.
 
 ## The motivation for this project
 
