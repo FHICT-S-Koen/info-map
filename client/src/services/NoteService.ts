@@ -1,5 +1,5 @@
 import axios from 'axios'
-import Note from '../objects/Note'
+import Note from '../models/Note'
 
 export default class NoteService {
   static API_URL = process.env.REACT_APP_PROXY_URL

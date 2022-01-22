@@ -1,5 +1,5 @@
 import axios from 'axios'
-import Map from '../objects/Map'
+import Map from '../models/Map'
 
 export default class MapService {
   static API_URL = process.env.REACT_APP_PROXY_URL
