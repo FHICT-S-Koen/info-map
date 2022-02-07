@@ -1,7 +1,7 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { useEffect, useState } from 'react'
-import Map from '../objects/Map'
-import Note from '../objects/Note'
+import Map from '../models/Map'
+import Note from '../models/Note'
 import MapService from '../services/MapService'
 import NoteService from '../services/NoteService'
 
