@@ -4,7 +4,6 @@
     {
       "label": "Start apps",
       "dependsOn": [
-        "client", 
         "discovery-server",
         "gateway",
         "map-service",
