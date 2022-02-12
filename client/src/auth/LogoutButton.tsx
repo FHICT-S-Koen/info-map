@@ -4,10 +4,9 @@ import { LogoutIcon } from '@heroicons/react/outline'
 export default function LogoutButton() {
   const {logout} = useAuth0()
   return <button
-    className="text-green-400 rounded-md p-2 bg-gray-100 shadow hover:bg-gray-200 flex item-center"
+    className="rounded-md p-2 bg-gray-100 shadow flex item-center dark:bg-slate-800 dark:text-white"
     onClick={() => logout({ returnTo: window.location.origin })}>
       Log Out
     <LogoutIcon className="h-6 w-5 ml-2" />
   </button>
 }
-

@@ -8,9 +8,16 @@
       name="description"
       content="Web site created using create-react-app"
     />
-    <title>React App</title>
+    <script>
+      if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+      }
+    </script>
+    <title>Info Map</title>
   </head>
-  <body>
+  <body class="dark:bg-slate-700 dark:text-slate-500">
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
   </body>
