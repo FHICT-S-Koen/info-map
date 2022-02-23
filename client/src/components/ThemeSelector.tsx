@@ -1,53 +1,41 @@
 import { MoonIcon, SunIcon, DesktopComputerIcon } from '@heroicons/react/outline'
-import { useState } from 'react'
+import { useState, FC } from 'react'
 
 const ThemeSelector = () => {
 
-  let [state, setState] = useState(false)
+  let [active, setActive] = useState(false)
+  let [selected, setSetSelected] = useState(!!localStorage.theme)
 
-  const setSelectedTheme = () => {
+  const setSelectedTheme = (theme?: string) => {
+    setSetSelected(!!theme)
+    !!theme ? localStorage.theme = theme.toLowerCase() : localStorage.removeItem('theme')
+
     if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches))
       document.documentElement.classList.add('dark')
     else
       document.documentElement.classList.remove('dark')
   }
 
-  const setSystemTheme = () => {
-    localStorage.removeItem('theme')
-    setSelectedTheme()
+  const ThemeSelectorOption: FC<{icon: JSX.Element, theme?: string}> = ({icon, theme}) => {
+    return <li
+      className='flex cursor-pointer items-center hover:bg-slate-100 dark:hover:bg-slate-700 dark:text-white'
+      onClick={() => setSelectedTheme(theme)}>
+      {icon}{!theme ? 'System' : theme }
+    </li>
   }
 
-  const setLightTheme = () => {
-    localStorage.theme ='light'
-    setSelectedTheme()
-  }
-
-  const setDarkTheme = () => {
-    localStorage.theme ='dark'
-    setSelectedTheme()
-  }
-
-  return <>
-    <button
-      className='bg-white dark:bg-slate-800 rounded-md'
-      onClick={() => setState(!state)}>{<DesktopComputerIcon className='dark:stroke-slate-500 w-6 h-6 mx-2'/>}</button>
-    { state &&
-      <ul className='absolute z-50 bg-white dark:bg-slate-800 rounded-md w-36 top-full mt-2 py-[6px]'>
-        <li
-          className='flex cursor-pointer hover:bg-slate-700 dark:text-white'
-          onClick={setSystemTheme}>
-          <DesktopComputerIcon className='dark:stroke-slate-500 w-6 h-6 mx-2'/>System</li>
-        <li
-          className='flex cursor-pointer hover:bg-slate-700 dark:text-white'
-          onClick={setLightTheme}>
-          <SunIcon className='dark:stroke-slate-500 w-6 h-6 mx-2'/>Light</li>
-        <li
-          className='flex cursor-pointer hover:bg-slate-700 dark:text-white'
-          onClick={setDarkTheme}>
-          <MoonIcon className='dark:stroke-slate-500 w-6 h-6 mx-2'/>Dark</li>
-      </ul>
-    }
-  </>
+  return <button
+    onClick={() => setActive(!active)}
+    onBlur={() => setActive(false)}
+    className={`dark:bg-slate-800 rounded-md shadow ${selected && 'text-blue-400'}`}>
+    <DesktopComputerIcon className='w-6 h-6 mx-2'/>
+    { active &&
+      <ul className='absolute z-50 text-black dark:bg-slate-800 rounded-md w-36 top-full shadow mt-2 py-[6px]'>
+        <ThemeSelectorOption icon={<DesktopComputerIcon className='dark:stroke-slate-500 w-6 h-6 mx-2 my-0.5'/>} />
+        <ThemeSelectorOption icon={<SunIcon className='dark:stroke-slate-500 w-6 h-6 mx-2 my-0.5'/>} theme={'Light'} />
+        <ThemeSelectorOption icon={<MoonIcon className='dark:stroke-slate-500 w-6 h-6 mx-2 my-0.5'/>} theme={'Dark'} />
+      </ul> }
+  </button>
 }
 
 export default ThemeSelector
