@@ -1,9 +1,10 @@
-FROM node:12
+FROM node:latest
 
 WORKDIR /app
-ARG REACT_APP_AUTH0_DOMAIN
-ARG REACT_APP_AUTH0_CLIENT_KEY
-ARG REACT_APP_AUTH0_AUDIENCE
+ARG VITE_AUTH0_DOMAIN
+ARG VITE_AUTH0_CLIENT_KEY
+ARG VITE_AUTH0_AUDIENCE
+ARG VITE_PROXY_URL
 
 COPY package*.json ./
 
@@ -14,4 +15,4 @@ COPY . .
 
 RUN npm run build
 
-CMD ["serve", "-s", "build"]
+CMD ["serve", "-s", "dist"]
