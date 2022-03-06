@@ -19,7 +19,7 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-node@v2
         with: 
-          node-version: 12
+          node-version: 16
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
@@ -47,10 +47,10 @@ jobs:
   #   steps:
       - name: Build Docker image
         run: docker build -t registry.heroku.com/${{ secrets.CLIENT_HEROKU_APP }}/web:latest 
-              --build-arg REACT_APP_PROXY_URL=${{ secrets.REACT_APP_PROXY_URL }} 
-              --build-arg REACT_APP_AUTH0_DOMAIN=${{ secrets.INFO_MAP_AUTH0_DOMAIN }} 
-              --build-arg REACT_APP_AUTH0_CLIENT_KEY=${{ secrets.REACT_APP_AUTH0_CLIENT_KEY }} 
-              --build-arg REACT_APP_AUTH0_AUDIENCE=${{ secrets.INFO_MAP_AUTH0_AUDIENCE }} .
+              --build-arg VITE_PROXY_URL=${{ secrets.REACT_APP_PROXY_URL }} 
+              --build-arg VITE_AUTH0_DOMAIN=${{ secrets.INFO_MAP_AUTH0_DOMAIN }} 
+              --build-arg VITE_AUTH0_CLIENT_KEY=${{ secrets.REACT_APP_AUTH0_CLIENT_KEY }} 
+              --build-arg VITE_AUTH0_AUDIENCE=${{ secrets.INFO_MAP_AUTH0_AUDIENCE }} .
         
       - name: Docker image info
         run: docker images
