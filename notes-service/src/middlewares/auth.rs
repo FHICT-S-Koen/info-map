@@ -1,12 +1,12 @@
-use crate::errors::ServiceError;
+use crate::middlewares::error::ServiceError;
 use alcoholic_jwt::{token_kid, validate, Validation, JWKS};
 use serde::{Deserialize, Serialize};
 use std::{pin::Pin, error::Error};
 
 use actix_web::dev::ServiceRequest;
-use actix_web_httpauth::extractors::{
+use actix_web_httpauth::{extractors::{
     AuthenticationError, bearer::{BearerAuth, Config}
-};
+}, middleware::HttpAuthentication};
 
 #[derive(Debug, Serialize, Deserialize)]
 struct Claims {
@@ -50,3 +50,8 @@ pub async fn validator(req: ServiceRequest, credentials: BearerAuth) -> Result<S
         Err(_) => Err(AuthenticationError::from(config).into()),
     }
 }
+
+
+// pub fn init_auth() -> Auth {
+//    HttpAuthentication::bearer(validator)
+// }
