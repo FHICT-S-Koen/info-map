@@ -20,7 +20,7 @@ async fn main() -> std::io::Result<()> {
     HttpServer::new(move || {
         App::new()
             .app_data(pool.clone())
-            .app_data(extractors::init_eureka())
+            .app_data(extractors::init_eureka(port))
             .service(api::routes())
     })
     .bind(("0.0.0.0", port))?
