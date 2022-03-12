@@ -10,7 +10,7 @@ mod types;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    dotenv::dotenv().ok();
+    dotenv::from_path(".env.local").ok();
     let pool = extractors::init_pool("DATABASE_URL");
     let port = std::env::var("PORT")
         .expect("PORT must be set")
