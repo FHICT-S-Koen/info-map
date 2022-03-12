@@ -11,5 +11,5 @@ pub fn init_pool(env_var: &str) -> Data<Pool> {
         ConnectionManager::<PgConnection>::new(env::var(env_var).expect(env_var));
     Data::new(r2d2::Pool::builder()
         .build(manager)
-        .expect("Failed to create pool.").clone())
+        .expect("Failed to create pool."))
 }
