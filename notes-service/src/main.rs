@@ -20,7 +20,7 @@ async fn main() -> std::io::Result<()> {
     HttpServer::new(move || {
         App::new()
             .app_data(pool.clone())
-            .app_data(extractors::init_eureka(port))
+            .app_data(extractors::init_eureka(port)) // api can't be called when registering to non existing eureka server
             .service(api::routes())
     })
     .bind(("0.0.0.0", port))?
