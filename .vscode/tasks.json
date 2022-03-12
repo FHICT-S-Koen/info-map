@@ -2,7 +2,7 @@
 	"version": "2.0.0",
 	"tasks": [
     {
-      "label": "Start apps",
+      "label": "start backend",
       "dependsOn": [
         "discovery-server",
         "gateway",
@@ -13,25 +13,12 @@
       //   "runOn": "default"
       // }
     },
-		{
-      "label": "client",
-      "type": "shell",
-      "command": "npm run start",
-      "presentation": {
-        "reveal": "always",
-        "panel": "new"
-		  },
-      "options": {
-        "cwd": "${workspaceFolder}/client"
-      }
-		},
     {
       "label": "discovery-server",
       "type": "shell",
       "command": "gradle bootRun",
       "presentation": {
-        "reveal": "always",
-        "panel": "new"
+        "group": "info-map-discovery"
 		  },
       "options": {
         "cwd": "${workspaceFolder}/discovery-server"
@@ -42,8 +29,7 @@
       "type": "shell",
       "command": "gradle bootRun",
       "presentation": {
-        "reveal": "always",
-        "panel": "new"
+        "group": "info-map-discovery"
 		  },
       "options": {
         "cwd": "${workspaceFolder}/gateway"
@@ -54,8 +40,7 @@
       "type": "shell",
       "command": "gradle bootRun",
       "presentation": {
-        "reveal": "always",
-        "panel": "new"
+        "group": "info-map-backend"
 		  },
       "options": {
         "cwd": "${workspaceFolder}/map-service"
@@ -66,8 +51,7 @@
       "type": "shell",
       "command": "cargo run",
       "presentation": {
-        "reveal": "always",
-        "panel": "new"
+        "group": "info-map-backend"
 		  },
       "options": {
         "cwd": "${workspaceFolder}/notes-service"
@@ -79,8 +63,7 @@
       "type": "shell",
       "command": "./gradlew test",
       "presentation": {
-        "reveal": "always",
-        "panel": "new"
+        "group": "info-map-backend"
 		  },
       "options": {
         "cwd": "${workspaceFolder}/map-service"
