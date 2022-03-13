@@ -1,18 +1,14 @@
-FROM node:latest
+FROM node:16 as build
+
+COPY . ./app
 
 WORKDIR /app
+
+RUN npm ci && npm install -g serve && npm run build
+
 ARG VITE_AUTH0_DOMAIN
 ARG VITE_AUTH0_CLIENT_KEY
 ARG VITE_AUTH0_AUDIENCE
 ARG VITE_PROXY_URL
-
-COPY package*.json ./
-
-RUN npm ci
-RUN npm install -g serve
-
-COPY . .
-
-RUN npm run build
 
 CMD ["serve", "-s", "dist"]
