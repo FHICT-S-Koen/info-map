@@ -13,7 +13,7 @@
 | importing files | ??? | *no issue* |
 | exporting items | ??? | *no issue* |
 | seperating workspaces | ??? | *no issue* |
-| theme selector | 0.1 #43 | #51 |
+| theme selector | v1 #43 | suggestion #51 |
 
 > _no issue : means it's missing a github issue to give a further description_ \
 > _suggestion : means that this feature is not yet confirmed_ \
