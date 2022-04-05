@@ -1,27 +1,45 @@
-import { createContext, useState, FC, SetStateAction, Dispatch } from 'react'
+import { createContext, FC, Dispatch, useReducer } from 'react'
 
 const initialState = {
-  text: ''
+  coords: {
+    x: 0,
+    y: 0
+  }
+}
+
+type Action =
+  | { type: 'updateCoords', payload: [number, number] }
+  | { type: 'resetCoords' }
+
+function reducer(state = initialState, action: Action): InitialState {
+  switch (action.type) {
+    case 'updateCoords':
+      return {...state, coords: { x: state.coords.x+action.payload[0] , y: state.coords.y+action.payload[1] } }
+    case 'resetCoords':
+        return {...state, coords: { x: 0 , y: 0 } }
+    default:
+      throw new Error();
+  }
 }
 
 type InitialState = typeof initialState
 
-type InitialContext = {
-  state: InitialState;
-  setState: Dispatch<SetStateAction<InitialState>>;
-}
+type InitialContext = [
+  state: InitialState,
+  dispatch: Dispatch<Action>
+]
 
-const initialContextState: InitialContext = {
-  state: initialState,
-  setState: (state: SetStateAction<InitialState>) => state
-}
+const initialContextState: InitialContext = [
+  initialState,
+  () => null
+]
 
 export const Context = createContext(initialContextState)
 
 const StoreProvider: FC = ({ children }) => {
-  const [state, setState] = useState(initialContextState.state)
+  const [state, dispatch] = useReducer(reducer, initialState)
 
-  return <Context.Provider value={{state, setState}}>
+  return <Context.Provider value={[state, dispatch]}>
     {children}
   </Context.Provider>
 }
