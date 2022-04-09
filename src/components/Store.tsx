@@ -11,14 +11,14 @@ type Action =
   | { type: 'updateCoords', payload: [number, number] }
   | { type: 'resetCoords' }
 
-function reducer(state = initialState, action: Action): InitialState {
+const reducer = (state = initialState, action: Action): InitialState => {
   switch (action.type) {
     case 'updateCoords':
       return {...state, coords: { x: state.coords.x+action.payload[0] , y: state.coords.y+action.payload[1] } }
     case 'resetCoords':
         return {...state, coords: { x: 0 , y: 0 } }
     default:
-      throw new Error();
+      return state
   }
 }
 

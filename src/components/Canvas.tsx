@@ -1,12 +1,18 @@
-import { useContext, useEffect, useRef } from "react"
-import { Context } from "./Store"
+import { useEffect, useRef, useState } from "react"
+import { clearCanvas } from "../utils"
 
 const Canvas = () => {
-	const [state, dispatch] = useContext(Context)
+	const [{x, y}, _setCoords] = useState({x: 0, y: 0})
+	const canvasRef = useRef<HTMLCanvasElement>(null)
+	const coordsRef = useRef({x, y})
 
-	function drawSquares(context: CanvasRenderingContext2D) {
-		const x = state.coords.x
-		const y = state.coords.y
+	const setCoords = (x: number, y: number) => {
+		coordsRef.current = {x, y}
+		_setCoords({x: x, y: y})
+	}
+
+	const drawSquares = (context: CanvasRenderingContext2D) => {
+		const {x, y} = coordsRef.current
 		context.beginPath()
 		context.moveTo(50 + x, 50 + y)
 		context.lineTo(50 + x, 100 + y)
@@ -21,7 +27,19 @@ const Canvas = () => {
 		context.stroke()
 	}
 
-	function resizeCanvasToWindowSize(canvas: HTMLCanvasElement) {
+	const resetCoords = () => {
+		if (canvasRef.current) {
+			const canvas = canvasRef.current
+			const context = canvas.getContext('2d')
+			if (context) {
+				setCoords(0, 0)
+				clearCanvas(canvas)
+				drawSquares(context)
+			}
+		}
+	}
+
+	const resizeCanvasToWindowSize = (canvas: HTMLCanvasElement) => {
 		const {width, height} = canvas.getBoundingClientRect()
 		if (canvas.width !== width || canvas.height !== height) {
 			canvas.width = width
@@ -29,47 +47,40 @@ const Canvas = () => {
 		}
 	}
 
-	function handleResize(context: CanvasRenderingContext2D, canvas: HTMLCanvasElement) {
-		resizeCanvasToWindowSize(canvas)
-		context.clearRect(0, 0, canvas.width, canvas.height)
-		drawSquares(context)
-	}
-
-	function handleMouseMove(e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) {
-		if (e.buttons != 1) return
-		const canvas = canvasRef.current
-		if (!canvas) return
-  		const context = canvas.getContext('2d')
-		if (!context) return
-
-		dispatch({type: 'updateCoords', payload: [e.movementX, e.movementY]})
-		context.clearRect(0, 0, canvas.width, canvas.height)
-		drawSquares(context)
-	}
-
-	function resetCoords() {
-		const canvas = canvasRef.current
-		if (!canvas) return
-  		const context = canvas.getContext('2d')
-		if (!context) return
-		dispatch({type: 'resetCoords'})
-		context.clearRect(0, 0, canvas.width, canvas.height)
-		drawSquares(context)
-	}
-
-	const canvasRef = useRef<HTMLCanvasElement>(null)
-
 	useEffect(() => {
-		const canvas = canvasRef.current
-		if (!canvas) return
-  		const context = canvas.getContext('2d')
-		if (!context) return
+		const handleResize = (canvas: HTMLCanvasElement, context: CanvasRenderingContext2D) => {
+			resizeCanvasToWindowSize(canvas)
+			clearCanvas(canvas)
+			drawSquares(context)
+		}
+		if (canvasRef.current) {
+			const canvas = canvasRef.current
+			const context = canvas.getContext('2d')
+			resizeCanvasToWindowSize(canvas)
 
-		resizeCanvasToWindowSize(canvas)
-		drawSquares(context)
-		
-		window.addEventListener("resize", () => handleResize(context, canvas))
+			if (context) {
+				drawSquares(context)
+				window.addEventListener("resize", () => handleResize(canvas, context))
+				return () => window.addEventListener("resize", () => handleResize(canvas, context))
+			}
+		}
 	}, [])
+
+	const handleMouseMove = (e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
+		if (canvasRef.current) {
+			const canvas = canvasRef.current
+			const context = canvas.getContext('2d')
+			if (context) {
+				if (e.buttons != 1) return
+				if (e.shiftKey) return
+
+				// if (0 < e.clientX && e.clientX < 100 && 0 < e.clientY && e.clientY < 100) return
+				setCoords(x+e.movementX, y+e.movementY)
+				clearCanvas(canvas)
+				drawSquares(context)
+			}
+		}
+	}
 
 	return <><canvas
 			id="canvas"
@@ -77,10 +88,10 @@ const Canvas = () => {
 			ref={canvasRef}
 			onMouseMove={handleMouseMove}>
 		</canvas>
-		<span 
+		<span /*TODO: fix location, styling and light theme*/
 			onClick={resetCoords} 
 			className="absolute top-4 right-4 font-bold x-50 text-white">
-				{`x: ${state.coords.x}, y: ${state.coords.y}`}
+			{`x: ${x}, y: ${y}`}
 		</span>
 	</>
 }
