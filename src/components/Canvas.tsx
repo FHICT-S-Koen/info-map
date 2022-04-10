@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react"
+import { drawGrid, drawNoteExample } from "../draw"
 import { clearCanvas } from "../utils"
 
 const Canvas = () => {
@@ -17,8 +18,6 @@ const Canvas = () => {
 		zoomRef.current = z
 		_setZoom(z)
 	}
-
-	const [note, _setNote] = useState({x: -25, y: -25, w: 50, h: 50, t: "test", f: 10})
 
 	const resetCoords = () => {
 		if (canvasRef.current) {
@@ -50,34 +49,21 @@ const Canvas = () => {
 		}
 	}
 
-
-
 	const draw = (context: CanvasRenderingContext2D) => {
 		if (canvasRef.current) {
 			const canvas = canvasRef.current
 			let {x, y} = coordsRef.current
-			const {width, height} = canvas.getBoundingClientRect()
-			const z = zoomRef.current
-
-			x += Math.round(width * 0.5)
-			y += Math.round(height * 0.5)
-
-			clearCanvas(canvas)
-
-			const offsetX = (-(note.w * z/100) + note.w) * 0.5
-			const offsetY = (-(note.h * z/100) + note.h) * 0.5
+			const zoom = zoomRef.current
 			
-			context.beginPath()
-			context.rect(note.x + x + offsetX , note.y + y + offsetY, note.w * z/100, note.h * z/100)
-			context.font = note.f * z/100 + 'px ubuntu'
-			context.fillText("Test", note.x + x + offsetX, note.y + note.f * z/100 + y + offsetY);
-			context.rect(-5 + Math.round(width * 0.5), -5 + Math.round(height * 0.5), 10, 10)
-			context.stroke()
+			const {width, height} = canvas.getBoundingClientRect()
+			x += Math.round(width * 0.5) // calculate center of canvas
+			y += Math.round(height * 0.5)
+			
+			clearCanvas(canvas)
+			drawGrid(context, x, y, width, height, zoom, '#64748B')
+			drawNoteExample(context, x, y, width, height, zoom, '#000000')
 		}
 	}
-
-	
-
 	
 
 	useEffect(() => {
