@@ -1,14 +1,17 @@
 ---
-name: user story
-about: Describes a piece of functionality the user wants and why.
-title: ''
+name: User Story
+about: To quickly add new user stories.
+title: As a ... , I want ... , so ...
 labels: user story
-assignees: Ekhorn
+assignees: ''
 
 ---
 
 **Acceptance Criteria**
-- [ ] 
+- ...
 
 **Test cases**
-- [ ]
+- [ ] TC01 ...
+
+**Tasks**
+- [ ] ...
