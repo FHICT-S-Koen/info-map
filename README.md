@@ -1,6 +1,7 @@
 # Info-map
 
 ## About
+This application aims to make transitioning between files easier and faster, by providing you with an “infinite” canvas together with many useful features.
 
 ## Features & Roadmap
 | Feature | Version | State |
