@@ -1,18 +1,20 @@
 import { useEffect, useRef, useState } from "react"
 import { drawGrid, drawNoteExample } from "../draw"
-import { clearCanvas } from "../utils"
+import { cameraToGlobal, clearCanvas } from "../utils"
+import Note from "../note"
+import Vec from "../vec"
 
 const Canvas = () => {
 	const canvasRef = useRef<HTMLCanvasElement>(null)
 
-	const [{x, y}, _setCoords] = useState({x: 0, y: 0})
-	const coordsRef = useRef({x, y})
-	const setCoords = (x: number, y: number) => {
-		coordsRef.current = {x, y}
-		_setCoords({x, y})
+	const [cameraPos, _setCameraPos] = useState(new Vec(0, 0))
+	const cameraPosRef = useRef(cameraPos)
+	const setCameraPos = (cameraPos: Vec) => {
+		cameraPosRef.current = cameraPos
+		_setCameraPos(cameraPos)
 	}
 
-	const [zoom, _setZoom] = useState(100)
+	const [zoom, _setZoom] = useState(1)
 	const zoomRef = useRef(zoom)
 	const setZoom = (z: number) => {
 		zoomRef.current = z
@@ -24,7 +26,7 @@ const Canvas = () => {
 			const canvas = canvasRef.current
 			const context = canvas.getContext('2d')
 			if (context) {
-				setCoords(0, 0)
+				setCameraPos(new Vec(0, 0))
 				draw(context)
 			}
 		}
@@ -35,7 +37,7 @@ const Canvas = () => {
 			const canvas = canvasRef.current
 			const context = canvas.getContext('2d')
 			if (context) {
-				setZoom(100)
+				setZoom(1)
 				draw(context)
 			}
 		}
@@ -52,16 +54,15 @@ const Canvas = () => {
 	const draw = (context: CanvasRenderingContext2D) => {
 		if (canvasRef.current) {
 			const canvas = canvasRef.current
-			let {x, y} = coordsRef.current
 			const zoom = zoomRef.current
-			
 			const {width, height} = canvas.getBoundingClientRect()
-			x += Math.round(width * 0.5) // calculate center of canvas
-			y += Math.round(height * 0.5)
 			
 			clearCanvas(canvas)
-			drawGrid(context, x, y, width, height, zoom, '#64748B')
-			drawNoteExample(context, x, y, width, height, zoom, '#000000')
+			drawGrid(context, cameraPosRef.current, width, height, zoom, '#64748B')
+
+			const note = new Note(-25, -25, 50, 50, "test", 10)
+
+			drawNoteExample(context, note, cameraPosRef.current, zoom, '#000000')
 		}
 	}
 	
@@ -94,7 +95,7 @@ const Canvas = () => {
 
 				// if (0 < e.clientX && e.clientX < 100 && 0 < e.clientY && e.clientY < 100) return
 
-				setCoords(x + e.movementX, y + e.movementY) //TODO: zoom does not effect coords
+				setCameraPos(cameraPos.add(new Vec(-e.movementX, e.movementY).div(zoom)))
 				draw(context)
 			}
 		}
@@ -105,19 +106,17 @@ const Canvas = () => {
 			const canvas = canvasRef.current
 			const context = canvas.getContext('2d')
 			if (context) {
-				const {width, height} = canvas.getBoundingClientRect()
-				const ox = e.clientX/width //TODO: doesn't work when using smaller window
-				const oy = (e.clientY-78)/height  //TODO: make this dynamic
+				const factor = 1.2
+				const mousePos = new Vec(e.clientX, -(e.clientY-78))
+				const globalPos = cameraToGlobal(mousePos, cameraPos, zoom) //TODO: make this dynamic
 
-				if (e.deltaY > 0 && zoom > 1) {
-					setZoom(Math.round(zoom - 1))
-
-					setCoords(ox < 0.5 ? x - Math.round(zoom/2 + (ox * -zoom)) : x + Math.round(zoom/2 - (zoom - (ox * zoom))) , oy < 0.5 ? y - Math.round(zoom/2 + (oy * -zoom)) : y + Math.round(zoom/2 - (zoom - (oy * zoom)))) //TODO: refactor
+				if (e.deltaY > 0) { //TODO: implement x^-a or 1/x^a
+					setZoom(zoom / factor)
+					setCameraPos(cameraPos.sub(globalPos).scale(factor).add(globalPos))
 				}
-				else if (e.deltaY < 0) {
-					setZoom(Math.round(zoom + 1))
-					
-					setCoords(ox < 0.5 ? x + Math.round(zoom/2 + (ox * -zoom)) : x - Math.round(zoom/2 - (zoom - (ox * zoom))) , oy < 0.5 ? y + Math.round(zoom/2 + (oy * -zoom)) : y - Math.round(zoom/2 - (zoom - (oy * zoom))))
+				else if (e.deltaY < 0  && zoom < 160) {
+					setZoom(zoom * factor)
+					setCameraPos(cameraPos.sub(globalPos).div(factor).add(globalPos))
 				}
 
 				draw(context)
@@ -136,12 +135,12 @@ const Canvas = () => {
 		<button 
 			onClick={resetCoords}
 			className="absolute top-4 right-20 dark:text-slate-500 dark:bg-slate-800 font-bold x-50 shadow p-[6px] rounded-md text-black"
-			>x: {x}, y: {y}
+			>x: {Math.round(cameraPos.x)}, y: {Math.round(cameraPos.y)}
 		</button>
 		<button
 			onClick={resetZoom}
 			className="absolute top-4 right-4 dark:text-slate-500 dark:bg-slate-800 font-bold x-50 shadow p-[6px] rounded-md text-black"
-		>{zoom}%
+		>{Math.round(zoom * 100)}%
 		</button>
 	</>
 }
