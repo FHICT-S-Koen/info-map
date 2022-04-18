@@ -4,6 +4,7 @@
 This application aims to make transitioning between files easier and faster, by providing you with an “infinite” canvas together with many useful features.
 
 ## Feature roadmap
+> _If you have any new suggestions your welcome to open an issue here: **[`new`](https://github.com/FHICT-S-Koen/info-map/issues?q=is%3Aissue+is%3Aopen+label%3Asuggestion)**_
 
 <table>
   <thead>
@@ -85,6 +86,16 @@ This application aims to make transitioning between files easier and faster, by 
       <td>???</td>
     </tr>
               <tr><td colspan="3"><h3>Future</h3></td></tr>
+    <tr>
+      <td>viewing keybinds</td>
+      <td>no issue</td>
+      <td>???</td>
+    </tr>
+    <tr>
+      <td>changing keybinds</td>
+      <td>no issue</td>
+      <td>???</td>
+    </tr>
     <tr>
       <td>single page view</td>
       <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/49)</td>
