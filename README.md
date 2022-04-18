@@ -4,7 +4,7 @@
 This application aims to make transitioning between files easier and faster, by providing you with an “infinite” canvas together with many useful features.
 
 ## Feature roadmap
-> _If you have any new suggestions your welcome to open an issue here: **[`new`](https://github.com/FHICT-S-Koen/info-map/issues?q=is%3Aissue+is%3Aopen+label%3Asuggestion)**_
+> _If you have any new suggestions your welcome to open an issue here: **[`new`](https://github.com/FHICT-S-Koen/info-map/issues/new?assignees=&labels=suggestion&template=suggestion.md&title=...)**_
 
 <table>
   <thead>
