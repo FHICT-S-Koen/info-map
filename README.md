@@ -3,7 +3,7 @@
 ## About
 This application aims to make transitioning between files easier and faster, by providing you with an “infinite” canvas together with many useful features.
 
-## Features & Roadmap
+## Feature roadmap
 
 <table>
   <thead>
@@ -19,11 +19,6 @@ This application aims to make transitioning between files easier and faster, by 
       <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;production&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
     </tr>
 <!--               <tr><td colspan="3"><h3>Current</h3></td></tr> -->
-    <tr>
-      <td>theme selector</td>
-      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/51)</td>
-      <td>(https://github.com/FHICT-S-Koen/info-map/issues/43)</td>
-    </tr>
     <tr>
       <td>panning</td>
       <td>in progress (https://github.com/FHICT-S-Koen/info-map/issues/54)</td>
@@ -46,6 +41,11 @@ This application aims to make transitioning between files easier and faster, by 
     </tr>
               <tr><td colspan="3"><h3>Future</h3></td></tr>
     <tr>
+      <td>single page view</td>
+      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/49)</td>
+      <td>???</td>
+    </tr>
+    <tr>
       <td>labeling item</td>
       <td>no issue</td>
       <td>???</td>
@@ -67,7 +67,7 @@ This application aims to make transitioning between files easier and faster, by 
     </tr>
     <tr>
       <td>importing files</td>
-      <td>no issue</td>
+      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/44)</td>
       <td>???</td>
     </tr>
     <tr>
@@ -79,6 +79,11 @@ This application aims to make transitioning between files easier and faster, by 
       <td>seperating workspaces</td>
       <td>no issue</td>
       <td>???</td>
+    </tr>
+    <tr>
+      <td>theme selector</td>
+      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/51)</td>
+      <td>(https://github.com/FHICT-S-Koen/info-map/issues/43)</td>
     </tr>
   </tbody>
 </table>
