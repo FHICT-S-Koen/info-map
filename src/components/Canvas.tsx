@@ -107,8 +107,8 @@ const Canvas = () => {
 			const context = canvas.getContext('2d')
 			if (context) {
 				const factor = 1.2
-				const mousePos = new Vec(e.clientX, -(e.clientY-78))
-				const globalPos = cameraToGlobal(mousePos, cameraPos, zoom) //TODO: make this dynamic
+				const mousePos = new Vec(e.clientX, -(e.clientY-78)) //TODO: make this dynamic
+				const globalPos = cameraToGlobal(mousePos, cameraPos, zoom)
 
 				if (e.deltaY > 0) { //TODO: implement x^-a or 1/x^a
 					setZoom(zoom / factor)
@@ -134,13 +134,13 @@ const Canvas = () => {
 		</canvas>
 		<button 
 			onClick={resetCoords}
-			className="absolute top-4 right-20 dark:text-slate-500 dark:bg-slate-800 font-bold x-50 shadow p-[6px] rounded-md text-black"
+			className="absolute top-4 right-20 dark:text-slate-500 dark:bg-slate-800 font-bold x-50 shadow p-[6px] rounded-md text-slate-500"
 			>x: {Math.round(cameraPos.x)}, y: {Math.round(cameraPos.y)}
 		</button>
 		<button
 			onClick={resetZoom}
-			className="absolute top-4 right-4 dark:text-slate-500 dark:bg-slate-800 font-bold x-50 shadow p-[6px] rounded-md text-black"
-		>{Math.round(zoom * 100)}%
+			className="absolute top-4 right-4 dark:text-slate-500 dark:bg-slate-800 font-bold x-50 shadow p-[6px] rounded-md text-slate-500"
+			>{Math.round(zoom * 100)}%
 		</button>
 	</>
 }
