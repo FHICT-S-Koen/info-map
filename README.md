@@ -97,6 +97,11 @@ This application aims to make transitioning between files easier and faster, by 
       <td>???</td>
     </tr>
     <tr>
+      <td>viewing keybinds</td>
+      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/35)</td>
+      <td>???</td>
+    </tr>
+    <tr>
       <td>single page view</td>
       <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/49)</td>
       <td>???</td>
@@ -134,6 +139,11 @@ This application aims to make transitioning between files easier and faster, by 
     <tr>
       <td>seperating workspaces</td>
       <td>no issue</td>
+      <td>???</td>
+    </tr>
+    <tr>
+      <td>right click search</td>
+      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/50)</td>
       <td>???</td>
     </tr>
     <tr>
