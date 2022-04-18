@@ -87,6 +87,11 @@ This application aims to make transitioning between files easier and faster, by 
     </tr>
               <tr><td colspan="3"><h3>Future</h3></td></tr>
     <tr>
+      <td>zoomed out far show only name/label</td>
+      <td>no issue</td>
+      <td>???</td>
+    </tr>
+    <tr>
       <td>viewing keybinds</td>
       <td>no issue</td>
       <td>???</td>
