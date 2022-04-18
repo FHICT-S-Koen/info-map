@@ -1,7 +1,6 @@
 ---
 name: suggestion
-about: Describe what you would like to see added.
-  goal(s).
+about: describe what you would like to see added
 title: ...
 labels: suggestion
 assignees: ''
