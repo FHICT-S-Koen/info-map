@@ -35,6 +35,51 @@ This application aims to make transitioning between files easier and faster, by 
       <td>???</td>
     </tr>
     <tr>
+      <td>resizing notes</td>
+      <td>no issue</td>
+      <td>???</td>
+    </tr>
+    <tr>
+      <td>selecting and moving notes</td>
+      <td>no issue</td>
+      <td>???</td>
+    </tr>
+    <tr>
+      <td>deleting notes</td>
+      <td>no issue</td>
+      <td>???</td>
+    </tr>
+    <tr>
+      <td>editing notes</td>
+      <td>no issue</td>
+      <td>???</td>
+    </tr>
+    <tr>
+      <td>gridlines</td>
+      <td>no issue</td>
+      <td>???</td>
+    </tr>
+    <tr>
+      <td>reseting coordinates</td>
+      <td>no issue</td>
+      <td>???</td>
+    </tr>
+    <tr>
+      <td>reseting zoom</td>
+      <td>no issue</td>
+      <td>???</td>
+    </tr>
+    <tr>
+      <td>searching for notes</td>
+      <td>no issue</td>
+      <td>???</td>
+    </tr>
+    <tr>
+      <td>changing font and text size of a note</td>
+      <td>no issue</td>
+      <td>???</td>
+    </tr>
+    <tr>
       <td>choosing your own datasource</td>
       <td>no issue</td>
       <td>???</td>
