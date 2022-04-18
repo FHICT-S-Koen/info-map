@@ -4,36 +4,109 @@
 This application aims to make transitioning between files easier and faster, by providing you with an “infinite” canvas together with many useful features.
 
 ## Features & Roadmap
-| Feature | Version | State |
-| ------- | ------- | ----- |
-| making a note | ??? | *no issue* |
-| labeling item | ??? | *no issue* |
-| grouping items | ??? | *no issue* |
-| duplicating/refrencing items (wormhole) | ??? | suggestion #50 |
-| duplicating text (Command) | ??? | *no issue* |
-| importing files | ??? | *no issue* |
-| exporting items | ??? | *no issue* |
-| seperating workspaces | ??? | *no issue* |
-| theme selector | v1 #43 | suggestion #51 |
 
-> _no issue : means it's missing a github issue to give a further description_ \
-> _suggestion : means that this feature is not yet confirmed_ \
-> _confirmed : means there's a github issue open on the [project board](https://github.com/FHICT-S-Koen/info-map/projects/1)_ \
-> _in progress : means the feature is being worked on_ \
-> _done : means the feature is added and the issue is closed_
+<table>
+  <thead>
+    <tr>
+      <th rowspan="2"><h2>Feature</h2></th>
+      <th colspan="2"><h2>State</h2></th>
+    </tr>
+  </thead>
+  <tbody align="center">
+    <tr>
+      <th></th>
+      <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;develop&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+      <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;production&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+    </tr>
+<!--               <tr><td colspan="3"><h3>Current</h3></td></tr> -->
+    <tr>
+      <td>theme selector</td>
+      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/51)</td>
+      <td>(https://github.com/FHICT-S-Koen/info-map/issues/43)</td>
+    </tr>
+    <tr>
+      <td>panning</td>
+      <td>in progress (https://github.com/FHICT-S-Koen/info-map/issues/54)</td>
+      <td>???</td>
+    </tr>
+    <tr>
+      <td>zooming</td>
+      <td>in progress (https://github.com/FHICT-S-Koen/info-map/issues/55)</td>
+      <td>???</td>
+    </tr>
+    <tr>
+      <td>making a note</td>
+      <td>confirmed (https://github.com/FHICT-S-Koen/info-map/issues/56)</td>
+      <td>???</td>
+    </tr>
+    <tr>
+      <td>choosing your own datasource</td>
+      <td>no issue</td>
+      <td>???</td>
+    </tr>
+              <tr><td colspan="3"><h3>Future</h3></td></tr>
+    <tr>
+      <td>labeling item</td>
+      <td>no issue</td>
+      <td>???</td>
+    </tr>
+    <tr>
+      <td>grouping items</td>
+      <td>no issue</td>
+      <td>???</td>
+    </tr>
+    <tr>
+      <td>duplicating/refrencing items (wormhole)</td>
+      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/50)</td>
+      <td>???</td>
+    </tr>
+    <tr>
+      <td>duplicating text (Command)</td>
+      <td>no issue</td>
+      <td>???</td>
+    </tr>
+    <tr>
+      <td>importing files</td>
+      <td>no issue</td>
+      <td>???</td>
+    </tr>
+    <tr>
+      <td>exporting items</td>
+      <td>no issue</td>
+      <td>???</td>
+    </tr>
+    <tr>
+      <td>seperating workspaces</td>
+      <td>no issue</td>
+      <td>???</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<details>
+  <summary><i>details</i></summary>
+
+  > no issue: _means it's missing a github issue to give a further description_ \
+  > suggestion: _means that this feature is not yet confirmed_ \
+  > confirmed: _means there's a github issue open on the [project board](https://github.com/FHICT-S-Koen/info-map/projects/1)_ \
+  > in progress: _means the feature is being worked on_ \
+  > done: _means the corresponding issue is closed_
+</details>
+
 
 ## (Default) Controls
-| Action | Input(s) |
-| ------ | -------- |
-| panning | `hold left mouse down` + `drag` |
-| open small menu on certain location | `right mouse press` |
-| select nearest item (depending on direction) | `↑`/`↓`/`→`/`←` |
-| edit (when selected) | `enter` |
-| delete (when selected) | `delete` |
-| search | `shift` + `f` |
-| zoom (towards mouse location) | `scroll wheel` |
-| move item or select multiple items? | `shift + left click` |
-| import | `shift + i` / `drag files (onto canvas)` |
-| export (selected or choose) | `shift` + `e` |
-| open link | `middle mouse` |
-| open shortcut menu | `???` |
+| Action                                        | Input(s) |
+| --------------------------------------------- | -------- |
+| panning                                       | `hold left mouse down` + `drag` |
+| open small menu on certain location           | `right mouse press` |
+| select nearest item (depending on direction)  | `↑`/`↓`/`→`/`←` |
+| edit (when selected)                          | `enter` |
+| delete (when selected)                        | `delete` |
+| search                                        | `shift` + `f` |
+| zoom (towards mouse location)                 | `scroll wheel` |
+| move item or select multiple items?           | `shift + left click` |
+| import                                        | `shift + i` / `drag files (onto canvas)` |
+| export (selected or choose)                   | `shift` + `e` |
+| open link                                     | `middle mouse` |
+| open shortcut menu                            | `???` |
