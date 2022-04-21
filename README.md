@@ -31,18 +31,23 @@ This application aims to make transitioning between files easier and faster, by 
       <td>???</td>
     </tr>
     <tr>
+      <td>showing position & zoom level</td>
+      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/18)</td>
+      <td>???</td>
+    </tr>
+    <tr>
       <td>making a note</td>
       <td>confirmed (https://github.com/FHICT-S-Koen/info-map/issues/56)</td>
       <td>???</td>
     </tr>
     <tr>
       <td>resizing notes</td>
-      <td>no issue</td>
+      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/22)</td>
       <td>???</td>
     </tr>
     <tr>
       <td>selecting and moving notes</td>
-      <td>no issue</td>
+      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/21)</td>
       <td>???</td>
     </tr>
     <tr>
@@ -52,7 +57,7 @@ This application aims to make transitioning between files easier and faster, by 
     </tr>
     <tr>
       <td>editing notes</td>
-      <td>no issue</td>
+      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/12)</td>
       <td>???</td>
     </tr>
     <tr>
@@ -72,7 +77,7 @@ This application aims to make transitioning between files easier and faster, by 
     </tr>
     <tr>
       <td>searching for notes</td>
-      <td>no issue</td>
+      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/20)</td>
       <td>???</td>
     </tr>
     <tr>
@@ -147,11 +152,6 @@ This application aims to make transitioning between files easier and faster, by 
       <td>???</td>
     </tr>
     <tr>
-      <td>right click search</td>
-      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/50)</td>
-      <td>???</td>
-    </tr>
-    <tr>
       <td>theme selector</td>
       <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/51)</td>
       <td>(https://github.com/FHICT-S-Koen/info-map/issues/43)</td>
@@ -164,6 +164,11 @@ This application aims to make transitioning between files easier and faster, by 
     <tr>
       <td>inner note item placement</td>
       <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/24)</td>
+      <td>???</td>
+    </tr>
+    <tr>
+      <td>linking notes</td>
+      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/23)</td>
       <td>???</td>
     </tr>
   </tbody>
