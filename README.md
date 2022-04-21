@@ -171,6 +171,31 @@ This application aims to make transitioning between files easier and faster, by 
       <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/23)</td>
       <td>???</td>
     </tr>
+    <tr>
+      <td>adding links</td>
+      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/13)</td>
+      <td>???</td>
+    </tr>
+    <tr>
+      <td>adding images</td>
+      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/14)</td>
+      <td>???</td>
+    </tr>
+    <tr>
+      <td>adding GIFs</td>
+      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/15)</td>
+      <td>???</td>
+    </tr>
+    <tr>
+      <td>embeding video's</td>
+      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/16)</td>
+      <td>???</td>
+    </tr>
+    <tr>
+      <td>section sharing</td>
+      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/32)</td>
+      <td>???</td>
+    </tr>
   </tbody>
 </table>
 
