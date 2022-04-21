@@ -47,7 +47,7 @@ This application aims to make transitioning between files easier and faster, by 
     </tr>
     <tr>
       <td>deleting notes</td>
-      <td>no issue</td>
+      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/11)</td>
       <td>???</td>
     </tr>
     <tr>
@@ -155,6 +155,16 @@ This application aims to make transitioning between files easier and faster, by 
       <td>theme selector</td>
       <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/51)</td>
       <td>(https://github.com/FHICT-S-Koen/info-map/issues/43)</td>
+    </tr>
+    <tr>
+      <td>sharing maps</td>
+      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/25)</td>
+      <td>???</td>
+    </tr>
+    <tr>
+      <td>inner note item placement</td>
+      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/24)</td>
+      <td>???</td>
     </tr>
   </tbody>
 </table>
