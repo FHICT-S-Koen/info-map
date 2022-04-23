@@ -196,6 +196,21 @@ This application aims to make transitioning between files easier and faster, by 
       <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/32)</td>
       <td>???</td>
     </tr>
+    <tr>
+      <td>downloading data when stored in cloud</td>
+      <td>no issue</td>
+      <td>???</td>
+    </tr>
+    <tr>
+      <td>uploading data when used localy</td>
+      <td>no issue</td>
+      <td>???</td>
+    </tr>
+    <tr>
+      <td>local network data sharing</td>
+      <td>no issue</td>
+      <td>???</td>
+    </tr>
   </tbody>
 </table>
 
