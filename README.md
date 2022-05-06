@@ -31,28 +31,33 @@ This application aims to make transitioning between files easier and faster, by 
       <td>???</td>
     </tr>
     <tr>
+      <td>showing position & zoom level</td>
+      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/18)</td>
+      <td>???</td>
+    </tr>
+    <tr>
       <td>making a note</td>
       <td>confirmed (https://github.com/FHICT-S-Koen/info-map/issues/56)</td>
       <td>???</td>
     </tr>
     <tr>
       <td>resizing notes</td>
-      <td>no issue</td>
+      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/22)</td>
       <td>???</td>
     </tr>
     <tr>
       <td>selecting and moving notes</td>
-      <td>no issue</td>
+      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/21)</td>
       <td>???</td>
     </tr>
     <tr>
       <td>deleting notes</td>
-      <td>no issue</td>
+      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/11)</td>
       <td>???</td>
     </tr>
     <tr>
       <td>editing notes</td>
-      <td>no issue</td>
+      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/12)</td>
       <td>???</td>
     </tr>
     <tr>
@@ -72,7 +77,7 @@ This application aims to make transitioning between files easier and faster, by 
     </tr>
     <tr>
       <td>searching for notes</td>
-      <td>no issue</td>
+      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/20)</td>
       <td>???</td>
     </tr>
     <tr>
@@ -86,6 +91,11 @@ This application aims to make transitioning between files easier and faster, by 
       <td>???</td>
     </tr>
               <tr><td colspan="3"><h3>Future</h3></td></tr>
+    <tr>
+      <td>zoomed out far show only name/label</td>
+      <td>no issue</td>
+      <td>???</td>
+    </tr>
     <tr>
       <td>viewing keybinds</td>
       <td>no issue</td>
@@ -142,14 +152,64 @@ This application aims to make transitioning between files easier and faster, by 
       <td>???</td>
     </tr>
     <tr>
-      <td>right click search</td>
-      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/50)</td>
-      <td>???</td>
-    </tr>
-    <tr>
       <td>theme selector</td>
       <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/51)</td>
       <td>(https://github.com/FHICT-S-Koen/info-map/issues/43)</td>
+    </tr>
+    <tr>
+      <td>sharing maps</td>
+      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/25)</td>
+      <td>???</td>
+    </tr>
+    <tr>
+      <td>inner note item placement</td>
+      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/24)</td>
+      <td>???</td>
+    </tr>
+    <tr>
+      <td>linking notes</td>
+      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/23)</td>
+      <td>???</td>
+    </tr>
+    <tr>
+      <td>adding links</td>
+      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/13)</td>
+      <td>???</td>
+    </tr>
+    <tr>
+      <td>adding images</td>
+      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/14)</td>
+      <td>???</td>
+    </tr>
+    <tr>
+      <td>adding GIFs</td>
+      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/15)</td>
+      <td>???</td>
+    </tr>
+    <tr>
+      <td>embeding video's</td>
+      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/16)</td>
+      <td>???</td>
+    </tr>
+    <tr>
+      <td>section sharing</td>
+      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/32)</td>
+      <td>???</td>
+    </tr>
+    <tr>
+      <td>downloading data when stored in cloud</td>
+      <td>no issue</td>
+      <td>???</td>
+    </tr>
+    <tr>
+      <td>uploading data when used localy</td>
+      <td>no issue</td>
+      <td>???</td>
+    </tr>
+    <tr>
+      <td>local network data sharing</td>
+      <td>no issue</td>
+      <td>???</td>
     </tr>
   </tbody>
 </table>
