@@ -1,9 +1,11 @@
 # Info-map
 
 ## About
+
 This application aims to make transitioning between files easier and faster, by providing you with an “infinite” canvas together with many useful features.
 
 ## Feature roadmap
+
 > _If you have any new suggestions your welcome to open an issue here: **[`new`](https://github.com/FHICT-S-Koen/info-map/issues/new?assignees=&labels=suggestion&template=suggestion.md&title=...)**_
 
 <table>
@@ -214,30 +216,30 @@ This application aims to make transitioning between files easier and faster, by 
   </tbody>
 </table>
 
-
 <details>
   <summary><i>details</i></summary>
 
-  > no issue: _means it's missing a github issue to give a further description_ \
-  > suggestion: _means that this feature is not yet confirmed_ \
-  > confirmed: _means there's a github issue open on the [project board](https://github.com/FHICT-S-Koen/info-map/projects/1)_ \
-  > in progress: _means the feature is being worked on_ \
-  > done: _means the corresponding issue is closed_
+> no issue: _means it's missing a github issue to give a further description_ \
+> suggestion: _means that this feature is not yet confirmed_ \
+> confirmed: _means there's a github issue open on the [project board](https://github.com/FHICT-S-Koen/info-map/projects/1)_ \
+> in progress: _means the feature is being worked on_ \
+> done: _means the corresponding issue is closed_
+
 </details>
 
-
 ## (Default) Controls
-| Action                                        | Input(s) |
-| --------------------------------------------- | -------- |
-| panning                                       | `hold left mouse down` + `drag` |
-| open small menu on certain location           | `right mouse press` |
-| select nearest item (depending on direction)  | `↑`/`↓`/`→`/`←` |
-| edit (when selected)                          | `enter` |
-| delete (when selected)                        | `delete` |
-| search                                        | `shift` + `f` |
-| zoom (towards mouse location)                 | `scroll wheel` |
-| move item or select multiple items?           | `shift + left click` |
-| import                                        | `shift + i` / `drag files (onto canvas)` |
-| export (selected or choose)                   | `shift` + `e` |
-| open link                                     | `middle mouse` |
-| open shortcut menu                            | `???` |
+
+| Action                                       | Input(s)                                 |
+| -------------------------------------------- | ---------------------------------------- |
+| panning                                      | `hold left mouse down` + `drag`          |
+| open small menu on certain location          | `right mouse press`                      |
+| select nearest item (depending on direction) | `↑`/`↓`/`→`/`←`                          |
+| edit (when selected)                         | `enter`                                  |
+| delete (when selected)                       | `delete`                                 |
+| search                                       | `shift` + `f`                            |
+| zoom (towards mouse location)                | `scroll wheel`                           |
+| move item or select multiple items?          | `shift + left click`                     |
+| import                                       | `shift + i` / `drag files (onto canvas)` |
+| export (selected or choose)                  | `shift` + `e`                            |
+| open link                                    | `middle mouse`                           |
+| open shortcut menu                           | `???`                                    |

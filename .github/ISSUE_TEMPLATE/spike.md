@@ -4,8 +4,7 @@ about: describe the topic in the title and what you want to learn in the learnin
   goal(s)
 title: ...
 labels: spike
-assignees: ''
-
+assignees: ""
 ---
 
 **Learning goal(s)**
@@ -13,4 +12,5 @@ Goal: ...
 Result: ...
 
 **Task(s)**
+
 - [ ] ...
