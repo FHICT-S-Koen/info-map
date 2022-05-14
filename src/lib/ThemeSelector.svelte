@@ -8,7 +8,7 @@
 	const setSelectedTheme = (theme?: string) => {
 		if (!ls) return;
 		selected = !!ls.theme;
-		!!theme ? (ls.theme = theme.toLowerCase()) : ls.removeItem("theme");
+		theme ? (ls.theme = theme.toLowerCase()) : ls.removeItem("theme");
 
 		if (
 			ls.theme === "dark" ||

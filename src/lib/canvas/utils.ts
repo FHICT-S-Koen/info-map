@@ -1,4 +1,4 @@
-import Vec from "./vec";
+import type Vec from "./vec";
 
 const clearCanvas = (canvas: HTMLCanvasElement) => {
 	canvas.getContext("2d")?.clearRect(0, 0, canvas.width, canvas.height);

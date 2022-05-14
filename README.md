@@ -21,7 +21,6 @@ This application aims to make transitioning between files easier and faster, by 
       <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;develop&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
       <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;production&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
     </tr>
-<!--               <tr><td colspan="3"><h3>Current</h3></td></tr> -->
     <tr>
       <td>panning</td>
       <td>in progress (https://github.com/FHICT-S-Koen/info-map/issues/54)</td>
@@ -232,7 +231,7 @@ This application aims to make transitioning between files easier and faster, by 
 | Action                                       | Input(s)                                 |
 | -------------------------------------------- | ---------------------------------------- |
 | panning                                      | `hold left mouse down` + `drag`          |
-| open small menu on certain location          | `right mouse press`                      |
+| open small menu on certain location          | `right mouse click`                      |
 | select nearest item (depending on direction) | `↑`/`↓`/`→`/`←`                          |
 | edit (when selected)                         | `enter`                                  |
 | delete (when selected)                       | `delete`                                 |
