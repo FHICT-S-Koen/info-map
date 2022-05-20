@@ -1,11 +1,15 @@
 <script lang="ts">
-	import { cameraPos } from "$lib/canvas/stores";
+	import { cameraPos, last, startCoords } from "$lib/canvas/stores";
 	import Vec from "./canvas/vec";
 
 	$: x = Math.round($cameraPos.x);
 	$: y = Math.round($cameraPos.x);
 
-	const resetCoords = () => cameraPos.update(() => new Vec(0, 0));
+	const resetCoords = () => {
+		cameraPos.update(() => new Vec(0, 0));
+		startCoords.update(() => new Vec(0, 0));
+		last.update(() => new Vec(0, 0));
+	};
 </script>
 
 <button

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { cameraPos, zoom } from "./stores";
+	import { cameraPos, last, startCoords, zoom } from "./stores";
 	import { onMount } from "svelte";
 	import Vec from "./vec";
 	import draw from "./draw";
@@ -17,11 +17,23 @@
 	};
 
 	const handleMouseMove = (e: MouseEvent) => {
-		if (e.shiftKey) return;
 		if (e.buttons != 1) return;
+		if (e.shiftKey) return;
 
-		cameraPos.update((pos) => pos.add(new Vec(-e.movementX, e.movementY).div($zoom)));
+		/* Currently disabled since movementX and movementY do not work properly with tauri */
+		// cameraPos.update((pos) => pos.add(new Vec(-e.movementX, e.movementY).div($zoom)));
+		cameraPos.update(() =>
+			new Vec(-e.clientX + $startCoords.x, e.clientY - 78 - $startCoords.y).div($zoom)
+		);
 	};
+
+	const handleMouseDown = (e: MouseEvent) => {
+		startCoords.update(() => new Vec(e.clientX - $last.x, e.clientY - 78 - $last.y));
+	};
+
+	const handleMouseUp = (e: MouseEvent) => {
+		last.update(() => new Vec(e.clientX - $startCoords.x, e.clientY - 78 - $startCoords.y));
+	}; 
 
 	const handleScroll = (e: WheelEvent) => {
 		const factor = 1.2;
@@ -36,6 +48,10 @@
 			zoom.update((z) => (z *= factor));
 			cameraPos.update((pos) => pos.sub(globalPos).div(factor).add(globalPos));
 		}
+
+		// update last with new camera position
+		const {x, y} = $cameraPos
+		last.update(() => new Vec(-x, y).scale($zoom))
 	};
 
 	onMount(handleResize);
@@ -47,5 +63,7 @@
 	class="flex-grow"
 	bind:this={canvas}
 	on:mousemove={handleMouseMove}
+	on:mousedown={handleMouseDown}
+	on:mouseup={handleMouseUp}
 	on:wheel={handleScroll}
 />
