@@ -33,7 +33,7 @@
 
 	const handleMouseUp = (e: MouseEvent) => {
 		last.update(() => new Vec(e.clientX - $startCoords.x, e.clientY - 78 - $startCoords.y));
-	}; 
+	};
 
 	const handleScroll = (e: WheelEvent) => {
 		const factor = 1.2;
@@ -50,8 +50,8 @@
 		}
 
 		// update last with new camera position
-		const {x, y} = $cameraPos
-		last.update(() => new Vec(-x, y).scale($zoom))
+		const { x, y } = $cameraPos;
+		last.update(() => new Vec(-x, y).scale($zoom));
 	};
 
 	onMount(handleResize);

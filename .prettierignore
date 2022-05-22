@@ -1,4 +1,5 @@
 .gitignore
 .github
 .svelte-kit
+build
 src-tauri
