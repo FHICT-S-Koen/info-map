@@ -58,7 +58,7 @@ const drawNoteExample = (
 	const pos = globalToCamera(new Vec(note.x, note.y), cameraPos, zoom);
 
 	context.beginPath();
-	context.rect(pos.x, -pos.y, note.width * zoom, -note.height * zoom); //TODO: -y since it's more intuitive for the user when 0,0 is bottom left
+	context.rect(pos.x, -pos.y, note.width * zoom, -note.height * zoom); //INFO: -y since it's more intuitive for the user when 0,0 is bottom left
 	context.font = note.fontSize * zoom + "px ubuntu";
 	context.fillText(note.text, pos.x, -note.height * zoom - pos.y + 8 * zoom);
 	context.strokeStyle = color;
