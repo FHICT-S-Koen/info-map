@@ -1,6 +1,21 @@
-import { globalToCamera } from "./utils"
+import { clearCanvas, globalToCamera } from "./utils"
 import Note from "./note"
 import Vec from "./vec"
+
+const draw = (canvas: HTMLCanvasElement, cameraPos: Vec, zoom: number) => {
+	if (!canvas) return
+	const context = canvas.getContext("2d")
+	if (context) {
+		const {width, height} = canvas.getBoundingClientRect()
+		
+		clearCanvas(canvas)
+		drawGrid(context, cameraPos, width, height, zoom, '#64748B')
+
+		const note = new Note(-25, -25, 50, 50, "test", 10)
+
+		drawNoteExample(context, note, cameraPos, zoom, '#000000')
+	}
+}
 
 const drawGrid = (context: CanvasRenderingContext2D, cameraPos: Vec, w: number, h: number, zoom: number, color: string) => {
 	const dist = zoom * 400
@@ -34,4 +49,4 @@ const drawNoteExample = (context: CanvasRenderingContext2D, note: Note, cameraPo
 	context.stroke()
 }
 
-export { drawGrid, drawNoteExample }
+export { draw as default, drawGrid, drawNoteExample }

@@ -1,13 +1,21 @@
 import { createContext, FC, Dispatch, useReducer } from 'react'
+import Vec from './canvas/vec'
 
 const initialState = {
+  cameraPos: new Vec(0, 0),
+  zoom: 1,
 }
 
 type Action =
-  | { type: 'example', payload: number }
+  | { type: 'setCameraPos', payload: Vec }
+  | { type: 'setZoom', payload: number }
 
 const reducer = (state = initialState, action: Action): InitialState => {
   switch (action.type) {
+    case 'setCameraPos':
+      return { ...state, cameraPos: action.payload}
+    case 'setZoom':
+      return { ...state, zoom: action.payload}
     default:
       return state
   }
