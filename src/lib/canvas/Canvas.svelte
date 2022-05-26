@@ -37,16 +37,16 @@
 
 	const handleScroll = (e: WheelEvent) => {
 		const factor = 1.2;
-		const mousePos = new Vec(e.clientX, -(e.clientY - 78)); //TODO: make this dynamic
-		const globalPos = cameraToGlobal(mousePos, $cameraPos, $zoom);
+		const mousePos = new Vec(e.clientX - canvas.offsetLeft, -(e.clientY - canvas.offsetTop));
+		const globalMousePos = cameraToGlobal(mousePos, $cameraPos, $zoom);
 
 		if (e.deltaY > 0) {
 			//TODO: implement x^-a or 1/x^a
 			zoom.update((z) => (z /= factor));
-			cameraPos.update((pos) => pos.sub(globalPos).scale(factor).add(globalPos));
+			cameraPos.update((pos) => pos.sub(globalMousePos).scale(factor).add(globalMousePos));
 		} else if (e.deltaY < 0 && $zoom < 160) {
 			zoom.update((z) => (z *= factor));
-			cameraPos.update((pos) => pos.sub(globalPos).div(factor).add(globalPos));
+			cameraPos.update((pos) => pos.sub(globalMousePos).div(factor).add(globalMousePos));
 		}
 
 		// update last with new camera position
