@@ -23,16 +23,16 @@
 		/* Currently disabled since movementX and movementY do not work properly with tauri */
 		// cameraPos.update((pos) => pos.add(new Vec(-e.movementX, e.movementY).div($zoom)));
 		cameraPos.update(() =>
-			new Vec(-e.clientX + $startCoords.x, e.clientY - 78 - $startCoords.y).div($zoom)
+			new Vec(-e.clientX + $startCoords.x, e.clientY - $startCoords.y).div($zoom)
 		);
 	};
 
 	const handleMouseDown = (e: MouseEvent) => {
-		startCoords.update(() => new Vec(e.clientX - $last.x, e.clientY - 78 - $last.y));
+		startCoords.update(() => new Vec(e.clientX - $last.x, e.clientY - $last.y));
 	};
 
 	const handleMouseUp = (e: MouseEvent) => {
-		last.update(() => new Vec(e.clientX - $startCoords.x, e.clientY - 78 - $startCoords.y));
+		last.update(() => new Vec(e.clientX - $startCoords.x, e.clientY - $startCoords.y));
 	};
 
 	const handleScroll = (e: WheelEvent) => {
