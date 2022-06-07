@@ -3,7 +3,7 @@
 	import Vec from "./canvas/vec";
 
 	$: x = Math.round($cameraPos.x);
-	$: y = Math.round($cameraPos.x);
+	$: y = Math.round($cameraPos.y);
 
 	const resetCoords = () => {
 		cameraPos.update(() => new Vec(0, 0));
