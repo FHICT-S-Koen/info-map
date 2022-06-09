@@ -53,10 +53,10 @@ const drawNoteExample = (
 	zoom: number
 ) => {
 	const pos = globalToCamera(new Vec(note.x, note.y), cameraPos, zoom);
-	const longestLine = note.text.reduce((a, b) =>
-		context.measureText(a).width > context.measureText(b).width ? a : b
-	);
-	const longestLineCanvasWidth = context.measureText(longestLine).width;
+	// const longestLine = note.text.reduce((a, b) =>
+	// 	context.measureText(a).width > context.measureText(b).width ? a : b
+	// );
+	// const longestLineCanvasWidth = context.measureText(longestLine).width;
 
 	context.fillStyle = note.bgColor;
 
@@ -66,11 +66,13 @@ const drawNoteExample = (
 	context.shadowOffsetX = 2 * zoom;
 	context.shadowOffsetY = 2 * zoom;
 
+	const margin = 3 * zoom;
+
 	context.fillRect(
-		pos.x,
-		-pos.y,
-		note.width * zoom > longestLineCanvasWidth ? note.width * zoom : longestLineCanvasWidth,
-		-note.height * zoom
+		pos.x - margin,
+		-pos.y + margin,
+		note.width * zoom + margin * 2,
+		-note.height * zoom - margin * 2
 	);
 
 	// stop adding shadow
@@ -79,10 +81,10 @@ const drawNoteExample = (
 	// draw outline (selected or not)
 	context.beginPath();
 	context.rect(
-		pos.x,
-		-pos.y,
-		note.width * zoom > longestLineCanvasWidth ? note.width * zoom : longestLineCanvasWidth,
-		-note.height * zoom
+		pos.x - margin,
+		-pos.y + margin,
+		note.width * zoom + margin * 2,
+		-note.height * zoom - margin * 2
 	); //INFO: -y since it's more intuitive for the user when 0,0 is bottom left
 	context.strokeStyle = note.isSelected ? "#485AFF" : note.bgColor;
 	context.stroke();
@@ -102,6 +104,7 @@ const drawNoteExample = (
 	// context.lineTo(pos.x + 0.1 * zoom, -pos.y - (note.height - 8) * zoom);
 	const x = context.measureText(note.text[note.linePos].slice(0, note.charPos)).width;
 	if (note.selectRange > 0) {
+		// TODO: contains bug when cursor position is bigger than 0
 		let range = note.selectRange;
 		let count = 0;
 		while (range > 0) {

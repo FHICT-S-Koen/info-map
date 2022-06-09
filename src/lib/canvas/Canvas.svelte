@@ -8,6 +8,7 @@
 	import { menuIsOpen, menuPos } from "$lib/menu/stores";
 
 	let noteSelected = false;
+	let resizing = false;
 	let canvas: HTMLCanvasElement;
 	$: draw(canvas, $cameraPos, $zoom, $notes);
 
@@ -93,14 +94,123 @@
 					});
 				}
 			});
-		}
-		/* Currently disabled since movementX and movementY do not work properly with tauri */
-		// cameraPos.update((pos) => pos.add(new Vec(-e.movementX, e.movementY).div($zoom)));
-		else if (e.buttons == 1) {
-			cameraPos.update(() =>
-				new Vec(-e.clientX + $startCoords.x, e.clientY - $startCoords.y).div($zoom)
-			);
-			last.update(() => new Vec(e.clientX - $startCoords.x, e.clientY - $startCoords.y));
+		} else {
+			const mousePos = new Vec(e.clientX, -(e.clientY - canvas.offsetTop));
+			const globalMousePos = cameraToGlobal(mousePos, $cameraPos, $zoom);
+			$notes.forEach((note, i) => {
+				notes.update((notes) => {
+					if (
+						globalMousePos.x > note.x + 2 &&
+						globalMousePos.x < note.x + note.width - 2 &&
+						globalMousePos.y > note.y + note.height + 2 &&
+						globalMousePos.y < note.y + note.height + 6
+					) {
+						canvas.style.cursor = "n-resize";
+						if (e.buttons == 1) {
+							resizing = true
+							notes[i].height = globalMousePos.y - note.y - 4;
+						}
+					} else if (
+						globalMousePos.x > note.x + 2 &&
+						globalMousePos.x < note.x + note.width - 2 &&
+						globalMousePos.y > note.y - 6 &&
+						globalMousePos.y < note.y - 2
+					) {
+						canvas.style.cursor = "s-resize";
+						if (e.buttons == 1) {
+							resizing = true
+							notes[i].height = note.height - globalMousePos.y + note.y - 4;
+							notes[i].y = globalMousePos.y + 4;
+						}
+					} else if (
+						globalMousePos.y > note.y + 2 &&
+						globalMousePos.y < note.y + note.height - 2 &&
+						globalMousePos.x > note.x - 6 &&
+						globalMousePos.x < note.x - 2
+					) {
+						canvas.style.cursor = "w-resize";
+						if (e.buttons == 1) {
+							resizing = true
+							notes[i].width = note.width - globalMousePos.x + note.x - 4;
+							notes[i].x = globalMousePos.x + 4;
+						}
+					} else if (
+						globalMousePos.y > note.y + 2 &&
+						globalMousePos.y < note.y + note.height - 2 &&
+						globalMousePos.x > note.x + note.width + 2 &&
+						globalMousePos.x < note.x + note.width + 6
+					) {
+						canvas.style.cursor = "e-resize";
+						if (e.buttons == 1) {
+							resizing = true
+							notes[i].width = globalMousePos.x - note.x - 4;
+						}
+					} else if (
+						globalMousePos.y < note.y + note.height + 6 &&
+						globalMousePos.y > note.y + note.height + 2 &&
+						globalMousePos.x < note.x + note.width + 6 &&
+						globalMousePos.x > note.x + note.width + 2
+					) {
+						canvas.style.cursor = "ne-resize";
+						if (e.buttons == 1) {
+							resizing = true
+							notes[i].width = globalMousePos.x - note.x - 4;
+							notes[i].height = globalMousePos.y - note.y - 4;
+						}
+					} else if (
+						globalMousePos.y < note.y + note.height + 6 &&
+						globalMousePos.y > note.y + note.height + 2 &&
+						globalMousePos.x < note.x - 2 &&
+						globalMousePos.x > note.x - 6
+					) {
+						canvas.style.cursor = "nw-resize";
+						if (e.buttons == 1) {
+							resizing = true
+							notes[i].height = globalMousePos.y - note.y - 4;
+							notes[i].width = note.width - globalMousePos.x + note.x - 4;
+							notes[i].x = globalMousePos.x + 4;
+						}
+					} else if (
+						globalMousePos.y < note.y - 2 &&
+						globalMousePos.y > note.y - 6 &&
+						globalMousePos.x < note.x + note.width + 6 &&
+						globalMousePos.x > note.x + note.width + 2
+					) {
+						canvas.style.cursor = "se-resize";
+						if (e.buttons == 1) {
+							resizing = true
+							notes[i].height = note.height - globalMousePos.y + note.y - 4;
+							notes[i].y = globalMousePos.y + 4;
+							notes[i].width = globalMousePos.x - note.x - 4;
+						}
+					} else if (
+						globalMousePos.y < note.y - 2 &&
+						globalMousePos.y > note.y - 6 &&
+						globalMousePos.x < note.x - 2 &&
+						globalMousePos.x > note.x - 6
+					) {
+						canvas.style.cursor = "sw-resize";
+						if (e.buttons == 1) {
+							resizing = true
+							notes[i].height = note.height - globalMousePos.y + note.y - 4;
+							notes[i].y = globalMousePos.y + 4;
+							notes[i].width = note.width - globalMousePos.x + note.x - 4;
+							notes[i].x = globalMousePos.x + 4;
+						}
+					} else if (!resizing) {
+						canvas.style.cursor = "pointer";
+						/* Currently disabled since movementX and movementY do not work properly with tauri */
+						// cameraPos.update((pos) => pos.add(new Vec(-e.movementX, e.movementY).div($zoom)));
+						if (e.buttons == 1) {
+							cameraPos.update(() =>
+								new Vec(-e.clientX + $startCoords.x, e.clientY - $startCoords.y).div($zoom)
+							);
+							last.update(() => new Vec(e.clientX - $startCoords.x, e.clientY - $startCoords.y));
+						}
+					}
+					return notes;
+				});
+			});
 		}
 	};
 
@@ -201,7 +311,9 @@
 		startCoords.update(() => new Vec(e.clientX - $last.x, e.clientY - $last.y));
 	};
 
-	const handleMouseUp = (e: MouseEvent) => {};
+	const handleMouseUp = (e: MouseEvent) => {
+		resizing = false
+	};
 
 	const handleKeyDown = (e: KeyboardEvent) => {
 		$notes.forEach((note, id) => {
@@ -216,8 +328,9 @@
 						);
 						note.charPos -= words[words.length - 1].length + 1;
 					} else if (e.ctrlKey && e.key == "Delete") {
-						notes.splice(id, 1)
-						noteSelected = false
+						notes.splice(id, 1);
+						noteSelected = false;
+
 					} else
 						switch (e.key) {
 							case "Enter":
@@ -323,7 +436,7 @@
 
 <canvas
 	tabindex="-1"
-	class="flex-grow select-none"
+	class="flex-grow cursor-pointer select-none"
 	bind:this={canvas}
 	on:contextmenu|preventDefault={handleMenuOpen}
 	on:mousemove={handleMouseMove}

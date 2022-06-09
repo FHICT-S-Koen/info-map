@@ -2,9 +2,9 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<!--TODO: make an icon to use <link rel="icon" href="%svelte.assets%/favicon.png" /> -->
+		<!--TODO: make an icon to use <link rel="icon" href="%sveltekit.assets%/favicon.png" /> -->
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		%svelte.head%
+		%sveltekit.head%
 		<script>
 			if (
 				localStorage.theme === "dark" ||
@@ -19,7 +19,7 @@
 	</head>
 	<body class="dark:bg-slate-700 dark:text-slate-500">
 		<div class="flex flex-col min-h-screen max-h-screen min-w-screen max-w-screen overflow-hidden">
-			%svelte.body%
+			%sveltekit.body%
 		</div>
 	</body>
 </html>
