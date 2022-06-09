@@ -25,15 +25,14 @@
 			notes.update((notes) =>
 				notes.map((note) => {
 					if (note.isSelected) {
-						const m = new Vec(-e.clientX + $startCoords.x, e.clientY - $startCoords.y).div($zoom);
-						note.x = -m.x;
-						note.y = -m.y;
+						const mousePos = new Vec(e.clientX, -(e.clientY - canvas.offsetTop));
+						const globalMousePos = cameraToGlobal(mousePos, $cameraPos, $zoom);
+						note.x = globalMousePos.x;
+						note.y = globalMousePos.y;
 					}
 					return note;
 				})
 			);
-			const { x, y } = $cameraPos;
-			startCoords.update(() => new Vec(-x, y + canvas.offsetTop).scale($zoom));
 		} else if (e.buttons == 1 && noteSelected) {
 			const mousePos = new Vec(e.clientX, -(e.clientY - canvas.offsetTop));
 			const globalMousePos = cameraToGlobal(mousePos, $cameraPos, $zoom);
