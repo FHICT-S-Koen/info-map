@@ -62,16 +62,28 @@ This application aims to make transitioning between files easier and faster, by 
     </tr>
     <tr>
       <td>gridlines</td>
-      <td>no issue</td>
+      <td>in progress (https://github.com/FHICT-S-Koen/info-map/issues/59)</td>
       <td>???</td>
     </tr>
     <tr>
       <td>reseting coordinates</td>
-      <td>no issue</td>
+      <td>in progress (https://github.com/FHICT-S-Koen/info-map/issues/60)</td>
       <td>???</td>
     </tr>
     <tr>
       <td>reseting zoom</td>
+      <td>in progress (https://github.com/FHICT-S-Koen/info-map/issues/61)</td>
+      <td>???</td>
+    </tr>
+    </tr>
+    <tr>
+      <td>choosing your own datasource</td>
+      <td>in progress (https://github.com/FHICT-S-Koen/info-map/issues/62</td>
+      <td>???</td>
+    </tr>
+              <tr><td colspan="3"><h3>Future</h3></td></tr>
+    <tr>
+      <td>zoomed out far show only name/label</td>
       <td>no issue</td>
       <td>???</td>
     </tr>
@@ -84,18 +96,6 @@ This application aims to make transitioning between files easier and faster, by 
       <td>changing font and text size of a note</td>
       <td>no issue</td>
       <td>???</td>
-    </tr>
-    <tr>
-      <td>choosing your own datasource</td>
-      <td>no issue</td>
-      <td>???</td>
-    </tr>
-              <tr><td colspan="3"><h3>Future</h3></td></tr>
-    <tr>
-      <td>zoomed out far show only name/label</td>
-      <td>no issue</td>
-      <td>???</td>
-    </tr>
     <tr>
       <td>viewing keybinds</td>
       <td>no issue</td>
