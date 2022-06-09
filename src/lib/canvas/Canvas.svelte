@@ -4,7 +4,6 @@
 	import Vec from "./vec";
 	import draw from "./draw";
 	import { cameraToGlobal, globalToCamera } from "./utils";
-	import { delPrevWord } from "./controls";
 	import Menu from "$lib/menu/Menu.svelte";
 	import { menuIsOpen, menuPos } from "$lib/menu/stores";
 
