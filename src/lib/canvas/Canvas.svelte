@@ -4,6 +4,9 @@
 	import Vec from "./vec";
 	import draw from "./draw";
 	import { cameraToGlobal, globalToCamera } from "./utils";
+	import { delPrevWord } from "./controls";
+	import Menu from "$lib/menu/Menu.svelte";
+	import { menuIsOpen, menuPos } from "$lib/menu/stores";
 
 	let noteSelected = false;
 	let canvas: HTMLCanvasElement;
@@ -307,6 +310,11 @@
 		last.update(() => new Vec(-x, y).scale($zoom));
 	};
 
+	const handleMenuOpen = (e: MouseEvent) => {
+		menuIsOpen.set(true);
+		menuPos.set(new Vec(e.clientX, e.clientY));
+	};
+
 	onMount(handleResize);
 </script>
 
@@ -316,9 +324,12 @@
 	tabindex="-1"
 	class="flex-grow select-none"
 	bind:this={canvas}
+	on:contextmenu|preventDefault={handleMenuOpen}
 	on:mousemove={handleMouseMove}
 	on:mousedown={handleMouseDown}
 	on:mouseup={handleMouseUp}
 	on:keydown={handleKeyDown}
 	on:wheel={handleScroll}
 />
+
+{#if $menuIsOpen}<Menu />{/if}
