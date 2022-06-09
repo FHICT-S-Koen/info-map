@@ -209,7 +209,13 @@
 			if (note.isSelected) {
 				notes.update((notes) => {
 					if (e.ctrlKey && e.key == "Backspace") {
-						delPrevWord(note, id, notes);
+						// TODO: contains bug
+						const words = notes[id].text[note.linePos].split(" ");
+						notes[id].text[note.linePos] = notes[id].text[note.linePos].slice(
+							0,
+							-words[words.length - 1].length - 1
+						);
+						note.charPos -= words[words.length - 1].length + 1;
 					} else
 						switch (e.key) {
 							case "Enter":
