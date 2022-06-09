@@ -36,6 +36,7 @@
 		} else if (e.buttons == 1 && noteSelected) {
 			const mousePos = new Vec(e.clientX, -(e.clientY - canvas.offsetTop));
 			const globalMousePos = cameraToGlobal(mousePos, $cameraPos, $zoom);
+
 			$notes.find((note, id) => {
 				if (
 					globalMousePos.x > note.x &&
@@ -75,36 +76,36 @@
 					}
 					notes.update((notes) => {
 						if (note.linePos == currentLine) {
-							notes[id].selectRange = count - note.charPos 
+							notes[id].selectRange = count - note.charPos;
 						} else if (note.linePos < currentLine) {
-							let range = note.text[note.linePos].length - note.charPos
-							for (let index = 0; index < (currentLine-note.linePos-1); index++) {
-								range += note.text[note.linePos+index+1].length
+							let range = note.text[note.linePos].length - note.charPos;
+							for (let index = 0; index < currentLine - note.linePos - 1; index++) {
+								range += note.text[note.linePos + index + 1].length;
 							}
-							notes[id].selectRange = range + count
+							notes[id].selectRange = range + count;
 						} else {
-							let range = -note.charPos
-							for (let index = 0; index < (note.linePos-currentLine-1); index++) {
-								range -= note.text[note.linePos+index-1].length
+							let range = -note.charPos;
+							for (let index = 0; index < note.linePos - currentLine - 1; index++) {
+								range -= note.text[note.linePos + index - 1].length;
 							}
-							notes[id].selectRange = range + count - note.text[currentLine].length
+							notes[id].selectRange = range + count - note.text[currentLine].length;
 						}
 						return notes;
 					});
 				}
-			})
+			});
 		}
 		/* Currently disabled since movementX and movementY do not work properly with tauri */
 		// cameraPos.update((pos) => pos.add(new Vec(-e.movementX, e.movementY).div($zoom)));
-		else if (e.buttons == 1)
+		else if (e.buttons == 1) {
 			cameraPos.update(() =>
 				new Vec(-e.clientX + $startCoords.x, e.clientY - $startCoords.y).div($zoom)
 			);
+			last.update(() => new Vec(e.clientX - $startCoords.x, e.clientY - $startCoords.y));
+		}
 	};
 
 	const handleMouseDown = (e: MouseEvent) => {
-		if (e.shiftKey) return;
-		startCoords.update(() => new Vec(e.clientX - $last.x, e.clientY - $last.y));
 		const mousePos = new Vec(e.clientX, -(e.clientY - canvas.offsetTop));
 		const globalMousePos = cameraToGlobal(mousePos, $cameraPos, $zoom);
 
@@ -153,7 +154,7 @@
 						notes[id].selectRange = 0;
 						return notes;
 					});
-				} else {
+				} else if (!e.shiftKey) {
 					$notes.forEach((note, id) => {
 						if (
 							globalMousePos.x > note.x &&
@@ -173,10 +174,10 @@
 							});
 						}
 					});
-					noteSelected = count == 1;
+					noteSelected = count >= 1;
 				}
 			});
-		} else {
+		} else if (!e.shiftKey) {
 			$notes.forEach((note, id) => {
 				if (
 					globalMousePos.x > note.x &&
@@ -196,26 +197,19 @@
 					});
 				}
 			});
-			noteSelected = count == 1;
+			noteSelected = count >= 1;
 		}
+		startCoords.update(() => new Vec(e.clientX - $last.x, e.clientY - $last.y));
 	};
 
-	const handleMouseUp = (e: MouseEvent) => {
-		last.update(() => new Vec(e.clientX - $startCoords.x, e.clientY - $startCoords.y));
-	};
+	const handleMouseUp = (e: MouseEvent) => {};
 
 	const handleKeyDown = (e: KeyboardEvent) => {
 		$notes.forEach((note, id) => {
 			if (note.isSelected) {
 				notes.update((notes) => {
 					if (e.ctrlKey && e.key == "Backspace") {
-						// TODO: contains bug
-						const words = notes[id].text[note.linePos].split(" ");
-						notes[id].text[note.linePos] = notes[id].text[note.linePos].slice(
-							0,
-							-words[words.length - 1].length - 1
-						);
-						note.charPos -= words[words.length - 1].length + 1;
+						delPrevWord(note, id, notes);
 					} else
 						switch (e.key) {
 							case "Enter":
