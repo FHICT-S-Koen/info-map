@@ -215,6 +215,9 @@
 							-words[words.length - 1].length - 1
 						);
 						note.charPos -= words[words.length - 1].length + 1;
+					} else if (e.ctrlKey && e.key == "Delete") {
+						notes.splice(id, 1)
+						noteSelected = false
 					} else
 						switch (e.key) {
 							case "Enter":
