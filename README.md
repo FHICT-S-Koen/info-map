@@ -22,57 +22,57 @@ This application aims to make transitioning between files easier and faster, by 
 <!--               <tr><td colspan="3"><h3>Current</h3></td></tr> -->
     <tr>
       <td>panning</td>
-      <td>in progress (https://github.com/FHICT-S-Koen/info-map/issues/54)</td>
+      <td>done (https://github.com/FHICT-S-Koen/info-map/issues/54)</td>
       <td>???</td>
     </tr>
     <tr>
       <td>zooming</td>
-      <td>in progress (https://github.com/FHICT-S-Koen/info-map/issues/55)</td>
+      <td>done (https://github.com/FHICT-S-Koen/info-map/issues/55)</td>
       <td>???</td>
     </tr>
     <tr>
       <td>showing position & zoom level</td>
-      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/18)</td>
+      <td>done (https://github.com/FHICT-S-Koen/info-map/issues/18)</td>
       <td>???</td>
     </tr>
     <tr>
       <td>making a note</td>
-      <td>confirmed (https://github.com/FHICT-S-Koen/info-map/issues/56)</td>
+      <td>done (https://github.com/FHICT-S-Koen/info-map/issues/56)</td>
       <td>???</td>
     </tr>
     <tr>
       <td>resizing notes</td>
-      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/22)</td>
+      <td>in progress (https://github.com/FHICT-S-Koen/info-map/issues/22)</td>
       <td>???</td>
     </tr>
     <tr>
       <td>selecting and moving notes</td>
-      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/21)</td>
+      <td>in progress (https://github.com/FHICT-S-Koen/info-map/issues/21)</td>
       <td>???</td>
     </tr>
     <tr>
       <td>deleting notes</td>
-      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/11)</td>
+      <td>done (https://github.com/FHICT-S-Koen/info-map/issues/11)</td>
       <td>???</td>
     </tr>
     <tr>
       <td>editing notes</td>
-      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/12)</td>
+      <td>done (https://github.com/FHICT-S-Koen/info-map/issues/12)</td>
       <td>???</td>
     </tr>
     <tr>
       <td>gridlines</td>
-      <td>in progress (https://github.com/FHICT-S-Koen/info-map/issues/59)</td>
+      <td>done (https://github.com/FHICT-S-Koen/info-map/issues/59)</td>
       <td>???</td>
     </tr>
     <tr>
       <td>reseting coordinates</td>
-      <td>in progress (https://github.com/FHICT-S-Koen/info-map/issues/60)</td>
+      <td>done (https://github.com/FHICT-S-Koen/info-map/issues/60)</td>
       <td>???</td>
     </tr>
     <tr>
       <td>reseting zoom</td>
-      <td>in progress (https://github.com/FHICT-S-Koen/info-map/issues/61)</td>
+      <td>done (https://github.com/FHICT-S-Koen/info-map/issues/61)</td>
       <td>???</td>
     </tr>
     </tr>
