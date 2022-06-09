@@ -53,6 +53,41 @@ const drawNoteExample = (
 	zoom: number
 ) => {
 	const pos = globalToCamera(new Vec(note.x, note.y), cameraPos, zoom);
+	const longestLine = note.text.reduce((a, b) =>
+		context.measureText(a).width > context.measureText(b).width ? a : b
+	);
+	const longestLineCanvasWidth = context.measureText(longestLine).width;
+
+	context.fillStyle = note.bgColor;
+
+	// add shadow to note
+	context.shadowColor = "rgba(0,0,0,255)";
+	context.shadowBlur = 6 * zoom;
+	context.shadowOffsetX = 2 * zoom;
+	context.shadowOffsetY = 2 * zoom;
+
+	context.fillRect(
+		pos.x,
+		-pos.y,
+		note.width * zoom > longestLineCanvasWidth ? note.width * zoom : longestLineCanvasWidth,
+		-note.height * zoom
+	);
+
+	// stop adding shadow
+	context.shadowColor = "rgba(0,0,0,0)";
+
+	// draw outline (selected or not)
+	context.beginPath();
+	context.rect(
+		pos.x,
+		-pos.y,
+		note.width * zoom > longestLineCanvasWidth ? note.width * zoom : longestLineCanvasWidth,
+		-note.height * zoom
+	); //INFO: -y since it's more intuitive for the user when 0,0 is bottom left
+	context.strokeStyle = note.isSelected ? "#485AFF" : note.bgColor;
+	context.stroke();
+
+	context.fillStyle = "#000000";
 
 	// draw text
 	context.font = note.fontSize * zoom + "px ubuntu";
@@ -67,33 +102,33 @@ const drawNoteExample = (
 	// context.lineTo(pos.x + 0.1 * zoom, -pos.y - (note.height - 8) * zoom);
 	const x = context.measureText(note.text[note.linePos].slice(0, note.charPos)).width;
 	if (note.selectRange > 0) {
-		let range = note.selectRange
-		let count = 0
+		let range = note.selectRange;
+		let count = 0;
 		while (range > 0) {
 			const charRangeWidth = context.measureText(
-				note.text[note.linePos+count].slice(note.charPos, note.charPos + range)
+				note.text[note.linePos + count].slice(note.charPos, note.charPos + range)
 			).width;
 			if (count == 0) {
 				context.rect(
 					pos.x + x,
-					-pos.y - (note.height - 8 * (note.linePos+count)) * zoom,
-					charRangeWidth,
-					8 * zoom
-				); 
-				range -= note.text[note.linePos].length - note.charPos
-			}
-			else {
-				context.rect(
-					pos.x,
-					-pos.y - (note.height - 8 * (note.linePos+count)) * zoom,
+					-pos.y - (note.height - 8 * (note.linePos + count)) * zoom,
 					charRangeWidth,
 					8 * zoom
 				);
-				range -= note.text[note.linePos+count].length - note.charPos
+				range -= note.text[note.linePos].length - note.charPos;
+			} else {
+				context.rect(
+					pos.x,
+					-pos.y - (note.height - 8 * (note.linePos + count)) * zoom,
+					charRangeWidth,
+					8 * zoom
+				);
+				range -= note.text[note.linePos + count].length - note.charPos;
 			}
-			count++
+			count++;
 		}
-	} else if (note.selectRange < 0) {// TODO: fix backward selection
+	} else if (note.selectRange < 0) {
+		// TODO: fix backward selection
 		// const d = (note.charPos + note.selectRange, note.charPos - 1);
 
 		// // console.log(note.charPos + note.selectRange, note.charPos - 1);
@@ -108,33 +143,32 @@ const drawNoteExample = (
 		// 	-charRangeWidth,
 		// 	8 * zoom
 		// );
-		let range = note.selectRange
-		console.log(range)
+		let range = note.selectRange;
+		console.log(range);
 
-		let count = 0
+		let count = 0;
 		while (range < 0) {
 			const charRangeWidth = context.measureText(
-				note.text[note.linePos+count].slice(note.charPos, note.charPos + range)
+				note.text[note.linePos + count].slice(note.charPos, note.charPos + range)
 			).width;
 			if (count == 0) {
 				context.rect(
 					pos.x + x,
-					-pos.y - (note.height - 8 * (note.linePos+count)) * zoom,
-					charRangeWidth,
-					8 * zoom
-				); 
-				range += note.text[note.linePos].length - note.charPos
-			}
-			else {
-				context.rect(
-					pos.x,
-					-pos.y - (note.height - 8 * (note.linePos+count)) * zoom,
+					-pos.y - (note.height - 8 * (note.linePos + count)) * zoom,
 					charRangeWidth,
 					8 * zoom
 				);
-				range += note.text[note.linePos+count].length - note.charPos
+				range += note.text[note.linePos].length - note.charPos;
+			} else {
+				context.rect(
+					pos.x,
+					-pos.y - (note.height - 8 * (note.linePos + count)) * zoom,
+					charRangeWidth,
+					8 * zoom
+				);
+				range += note.text[note.linePos + count].length - note.charPos;
 			}
-			count++
+			count++;
 			// console.log(range)
 		}
 	} else {
@@ -142,21 +176,6 @@ const drawNoteExample = (
 		context.lineTo(pos.x + x, -pos.y - (note.height - 8 * (note.linePos + 1)) * zoom);
 	}
 	context.strokeStyle = "#000000";
-	context.stroke();
-
-	// draw outline (selected or not)
-	const longestLine = note.text.reduce((a, b) =>
-		context.measureText(a).width > context.measureText(b).width ? a : b
-	);
-	const longestLineCanvasWidth = context.measureText(longestLine).width;
-	context.beginPath();
-	context.rect(
-		pos.x,
-		-pos.y,
-		note.width * zoom > longestLineCanvasWidth ? note.width * zoom : longestLineCanvasWidth,
-		-note.height * zoom
-	); //INFO: -y since it's more intuitive for the user when 0,0 is bottom left
-	context.strokeStyle = note.isSelected ? "#485AFF" : "#000000";
 	context.stroke();
 };
 
