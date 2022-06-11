@@ -1,5 +1,6 @@
 <script lang="ts">
 	import ThemeSelector from "./ThemeSelector.svelte";
+	import DatasourcePicker from "./DatasourcePicker.svelte";
 	import CoordsButton from "./CoordsButton.svelte";
 	import ZoomButton from "./ZoomButton.svelte";
 </script>
@@ -12,6 +13,7 @@
 		<div class="flex gap-1">
 			<CoordsButton />
 			<ZoomButton />
+			<DatasourcePicker />
 		</div>
 	</nav>
 </header>

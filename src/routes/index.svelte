@@ -5,16 +5,21 @@
 	import { notes } from "$lib/canvas/stores";
 	import { onMount } from "svelte";
 
+	let ls: typeof localStorage | null = null;
+
 	const handleWindowKeyDown = (e: KeyboardEvent) => {
 		if (e.ctrlKey && e.key == "s")
 			invoke("save_notes", { notes: JSON.stringify($notes) })
 	}
 
-	onMount(() =>
-		invoke("get_notes", { path: "" }).then(res => {
+	onMount(() => {
+		typeof localStorage !== `undefined` && (ls = localStorage);
+		if (!ls) return;
+
+		invoke("get_notes", { path: ls.getItem("path") }).then(res => {
     		notes.set(JSON.parse(res as string))
   		})
-	)
+	})
 </script>
 
 <svelte:window on:keydown={handleWindowKeyDown} />
