@@ -46,7 +46,7 @@
 	</svg>
 	{#if active}
 		<ul
-			class="absolute z-50 text-black dark:bg-slate-800 rounded-md w-36 top-full shadow mt-2 py-[6px]"
+			class="absolute z-50 bg-white text-black dark:bg-slate-800 rounded-md w-36 top-full shadow mt-2 py-[6px]"
 		>
 			<div
 				on:click={() => setSelectedTheme()}

@@ -8,6 +8,6 @@
 
 <button
 	on:click={resetZoom}
-	class="absolute top-4 right-4 dark:text-slate-500 dark:bg-slate-800 font-bold x-50 shadow p-[6px] rounded-md text-slate-500"
+	class="dark:text-slate-500 dark:bg-slate-800 font-bold shadow p-[6px] rounded-md text-slate-500"
 	>{z}%
 </button>
