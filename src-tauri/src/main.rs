@@ -4,10 +4,12 @@
 )]
 
 fn main() {
+  let context = tauri::generate_context!();
   tauri::Builder::default()
-    .manage(State(Mutex::new(InnerState { path: None })))
+    // .menu(tauri::Menu::os_default(&context.package_info().name))
     .invoke_handler(tauri::generate_handler![get_notes, save_notes])
-    .run(tauri::generate_context!())
+    .manage(State(Mutex::new(InnerState { path: None })))
+    .run(context)
     .expect("error while running tauri application");
 }
 
