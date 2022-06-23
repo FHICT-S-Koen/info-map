@@ -202,8 +202,11 @@
 						/* Currently disabled since movementX and movementY do not work properly with tauri */
 						// cameraPos.update((pos) => pos.add(new Vec(-e.movementX, e.movementY).div($zoom)));
 						if (e.buttons == 1) {
-							cameraPos.update(() =>
-								new Vec(-e.clientX + $startCoords.x, e.clientY - $startCoords.y).div($zoom)
+							cameraPos.update(pos => {
+								// const d =new Vec(-e.clientX + $startCoords.x, e.clientY - $startCoords.y).div($zoom).sub(pos)
+								// console.log(d.x, d.y, "---", e.movementX, e.movementY)
+								return new Vec(-e.clientX + $startCoords.x, e.clientY - $startCoords.y).div($zoom)
+								}
 							);
 							last.update(() => new Vec(e.clientX - $startCoords.x, e.clientY - $startCoords.y));
 						}
@@ -330,7 +333,12 @@
 					} else if (e.ctrlKey && e.key == "Delete") {
 						notes.splice(id, 1);
 						noteSelected = false;
-
+					} else if (e.altKey && e.key == "ArrowUp" && notes[id].text.length > 1 && notes[id].linePos > 0) {
+						[notes[id].text[notes[id].linePos-1], notes[id].text[notes[id].linePos]] = [notes[id].text[notes[id].linePos], notes[id].text[notes[id].linePos-1]];
+						note.linePos -= 1;
+					} else if (e.altKey && e.key == "ArrowDown" && notes[id].linePos+1 < notes[id].text.length) {
+						[notes[id].text[notes[id].linePos+1], notes[id].text[notes[id].linePos]] = [notes[id].text[notes[id].linePos], notes[id].text[notes[id].linePos+1]];
+						note.linePos += 1;
 					} else
 						switch (e.key) {
 							case "Enter":
@@ -360,15 +368,21 @@
 								}
 								break;
 							case "ArrowDown":
+								if (note.linePos+1 < notes[id].text.length) {
+									note.linePos += 1;
+								}
 								break;
 							case "ArrowUp":
+								if (notes[id].text.length > 0 && notes[id].linePos > 0) {
+									note.linePos -= 1;
+								}
 								break;
 							case "Backspace":
-								if (notes[id].text[note.linePos] == "") {
+								if (notes[id].linePos > 1 && notes[id].charPos == 0) {
+									notes[id].text.splice(notes[id].linePos, 1)
 									notes[id].linePos -= 1;
 									notes[id].charPos = note.text[notes[id].linePos].length;
-									notes[id].text.pop();
-								} else if (note.charPos > 0 && notes[id].text[note.linePos] != "") {
+								} else if (notes[id].charPos > 0) {
 									notes[id].text[note.linePos] = [
 										notes[id].text[note.linePos].slice(0, note.charPos - 1),
 										notes[id].text[note.linePos].slice(note.charPos)
@@ -420,14 +434,43 @@
 		}
 
 		// update last with new camera position
-		const { x, y } = $cameraPos;
-		last.update(() => new Vec(-x, y).scale($zoom));
+		// const { x, y } = $cameraPos;
+		// last.update(() => new Vec(-x, y).scale($zoom));
 	};
 
 	const handleMenuOpen = (e: MouseEvent) => {
 		menuIsOpen.set(true);
 		menuPos.set(new Vec(e.clientX, e.clientY));
 	};
+
+	let lastC = new Vec(0,0)
+
+	let s = false
+
+	const handleMouseEnter = (e: MouseEvent) => {
+		s = false
+	}
+
+	const handleMouseMove2 = (e: MouseEvent) => { 
+		const d = new Vec(e.offsetX, e.offsetY).sub(lastC)
+		if (s && e.buttons == 1) { 
+			// console.log("test")
+			// console.log(d)
+			// if (d.x != e.movementX || d.y != e.movementY) {
+			// 	console.log(d, "---", e.movementX, e.movementY)
+			// }
+			cameraPos.update((pos) => pos.add(new Vec(-d.x, d.y).div($zoom)));
+		}
+		lastC = new Vec(e.offsetX, e.offsetY)
+		s = true
+		// let d = new Vec(e.clientX - startC.x, e.clientY - startC.y)
+		// console.log("start", startC, "last", lastC)
+		// if (e.movementX != d.sub(lastC).x || e.movementY != d.sub(lastC).y) {
+		// 	console.log(d.sub(lastC), "---", e.movementX, e.movementY)
+		// }
+		// // console.log(e.movementX == d.sub(lastC).x, e.movementY == d.sub(lastC).y)
+		// lastC = d
+	}
 
 	onMount(handleResize);
 </script>
@@ -439,8 +482,9 @@
 	class="flex-grow cursor-pointer select-none"
 	bind:this={canvas}
 	on:contextmenu|preventDefault={handleMenuOpen}
-	on:mousemove={handleMouseMove}
 	on:mousedown={handleMouseDown}
+	on:mouseenter={handleMouseEnter}
+	on:mousemove={handleMouseMove2}
 	on:mouseup={handleMouseUp}
 	on:keydown={handleKeyDown}
 	on:wheel={handleScroll}
