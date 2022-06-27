@@ -1,9 +1,11 @@
 # Info-map
 
 ## About
+
 This application aims to make transitioning between files easier and faster, by providing you with an “infinite” canvas together with many useful features.
 
 ## Feature roadmap
+
 > _If you have any new suggestions your welcome to open an issue here: **[`new`](https://github.com/FHICT-S-Koen/info-map/issues/new?assignees=&labels=suggestion&template=suggestion.md&title=...)**_
 
 <table>
@@ -19,7 +21,6 @@ This application aims to make transitioning between files easier and faster, by 
       <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;develop&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
       <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;production&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
     </tr>
-<!--               <tr><td colspan="3"><h3>Current</h3></td></tr> -->
     <tr>
       <td>panning</td>
       <td>done (https://github.com/FHICT-S-Koen/info-map/issues/54)</td>
@@ -214,19 +215,19 @@ This application aims to make transitioning between files easier and faster, by 
   </tbody>
 </table>
 
-
 <details>
   <summary><i>details</i></summary>
 
-  > no issue: _means it's missing a github issue to give a further description_ \
-  > suggestion: _means that this feature is not yet confirmed_ \
-  > confirmed: _means there's a github issue open on the [project board](https://github.com/FHICT-S-Koen/info-map/projects/1)_ \
-  > in progress: _means the feature is being worked on_ \
-  > done: _means the corresponding issue is closed_
+> no issue: _means it's missing a github issue to give a further description_ \
+> suggestion: _means that this feature is not yet confirmed_ \
+> confirmed: _means there's a github issue open on the [project board](https://github.com/FHICT-S-Koen/info-map/projects/1)_ \
+> in progress: _means the feature is being worked on_ \
+> done: _means the corresponding issue is closed_
+
 </details>
 
-
 ## (Default) Controls
+
 | Action                                        | Input(s) |
 | --------------------------------------------- | -------- |
 | panning                                       | `hold left mouse down` + `drag` |

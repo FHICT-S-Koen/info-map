@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<!--TODO: make an icon to use <link rel="icon" href="%sveltekit.assets%/favicon.png" /> -->
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		%sveltekit.head%
+		<script>
+			if (
+				localStorage.theme === "dark" ||
+				(!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)
+			) {
+				document.documentElement.classList.add("dark");
+			} else {
+				document.documentElement.classList.remove("dark");
+			}
+		</script>
+		<title>Info Map</title>
+	</head>
+	<body class="dark:bg-slate-700 dark:text-slate-500">
+		<div class="flex flex-col min-h-screen max-h-screen min-w-screen max-w-screen overflow-hidden">
+			%sveltekit.body%
+		</div>
+	</body>
+</html>
