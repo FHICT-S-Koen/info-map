@@ -23,56 +23,68 @@ This application aims to make transitioning between files easier and faster, by 
     </tr>
     <tr>
       <td>panning</td>
-      <td>in progress (https://github.com/FHICT-S-Koen/info-map/issues/54)</td>
+      <td>done (https://github.com/FHICT-S-Koen/info-map/issues/54)</td>
       <td>???</td>
     </tr>
     <tr>
       <td>zooming</td>
-      <td>in progress (https://github.com/FHICT-S-Koen/info-map/issues/55)</td>
+      <td>done (https://github.com/FHICT-S-Koen/info-map/issues/55)</td>
       <td>???</td>
     </tr>
     <tr>
       <td>showing position & zoom level</td>
-      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/18)</td>
+      <td>done (https://github.com/FHICT-S-Koen/info-map/issues/18)</td>
       <td>???</td>
     </tr>
     <tr>
       <td>making a note</td>
-      <td>confirmed (https://github.com/FHICT-S-Koen/info-map/issues/56)</td>
+      <td>done (https://github.com/FHICT-S-Koen/info-map/issues/56)</td>
       <td>???</td>
     </tr>
     <tr>
       <td>resizing notes</td>
-      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/22)</td>
+      <td>in progress (https://github.com/FHICT-S-Koen/info-map/issues/22)</td>
       <td>???</td>
     </tr>
     <tr>
       <td>selecting and moving notes</td>
-      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/21)</td>
+      <td>in progress (https://github.com/FHICT-S-Koen/info-map/issues/21)</td>
       <td>???</td>
     </tr>
     <tr>
       <td>deleting notes</td>
-      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/11)</td>
+      <td>done (https://github.com/FHICT-S-Koen/info-map/issues/11)</td>
       <td>???</td>
     </tr>
     <tr>
       <td>editing notes</td>
-      <td>suggestion (https://github.com/FHICT-S-Koen/info-map/issues/12)</td>
+      <td>done (https://github.com/FHICT-S-Koen/info-map/issues/12)</td>
       <td>???</td>
     </tr>
     <tr>
       <td>gridlines</td>
-      <td>no issue</td>
+      <td>done (https://github.com/FHICT-S-Koen/info-map/issues/59)</td>
       <td>???</td>
     </tr>
     <tr>
       <td>reseting coordinates</td>
-      <td>no issue</td>
+      <td>done (https://github.com/FHICT-S-Koen/info-map/issues/60)</td>
       <td>???</td>
     </tr>
     <tr>
       <td>reseting zoom</td>
+      <td>done (https://github.com/FHICT-S-Koen/info-map/issues/61)</td>
+      <td>???</td>
+    </tr>
+    </tr>
+    <tr>
+      <td>choosing your own datasource</td>
+      <td>in progress (https://github.com/FHICT-S-Koen/info-map/issues/62</td>
+      <td>???</td>
+    </tr>
+              <tr><td colspan="3"><h3>Future</h3></td></tr>
+    <tr>
+      <td>zoomed out far show only name/label</td>
       <td>no issue</td>
       <td>???</td>
     </tr>
@@ -85,18 +97,6 @@ This application aims to make transitioning between files easier and faster, by 
       <td>changing font and text size of a note</td>
       <td>no issue</td>
       <td>???</td>
-    </tr>
-    <tr>
-      <td>choosing your own datasource</td>
-      <td>no issue</td>
-      <td>???</td>
-    </tr>
-              <tr><td colspan="3"><h3>Future</h3></td></tr>
-    <tr>
-      <td>zoomed out far show only name/label</td>
-      <td>no issue</td>
-      <td>???</td>
-    </tr>
     <tr>
       <td>viewing keybinds</td>
       <td>no issue</td>
@@ -228,17 +228,21 @@ This application aims to make transitioning between files easier and faster, by 
 
 ## (Default) Controls
 
-| Action                                       | Input(s)                                 |
-| -------------------------------------------- | ---------------------------------------- |
-| panning                                      | `hold left mouse down` + `drag`          |
-| open small menu on certain location          | `right mouse click`                      |
-| select nearest item (depending on direction) | `↑`/`↓`/`→`/`←`                          |
-| edit (when selected)                         | `enter`                                  |
-| delete (when selected)                       | `delete`                                 |
-| search                                       | `shift` + `f`                            |
-| zoom (towards mouse location)                | `scroll wheel`                           |
-| move item or select multiple items?          | `shift + left click`                     |
-| import                                       | `shift + i` / `drag files (onto canvas)` |
-| export (selected or choose)                  | `shift` + `e`                            |
-| open link                                    | `middle mouse`                           |
-| open shortcut menu                           | `???`                                    |
+| Action                                        | Input(s) |
+| --------------------------------------------- | -------- |
+| panning                                       | `hold left mouse down` + `drag` |
+| open small menu on certain location           | `right mouse press` |
+| select nearest item (depending on direction)  | `↑`/`↓`/`→`/`←` |
+| edit (when selected)                          | `enter` |
+| delete (when selected)                        | `delete` |
+| search                                        | `shift` + `f` |
+| zoom (towards mouse location)                 | `scroll wheel` |
+| move item or select multiple items?           | `shift + left click` |
+| import                                        | `shift + i` / `drag files (onto canvas)` |
+| export (selected or choose)                   | `shift` + `e` |
+| open link                                     | `middle mouse` |
+| open shortcut menu                            | `???` |
+
+## License
+
+See the [LICENSE](LICENSE.md) file for license rights and limitations (MIT).
