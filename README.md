@@ -241,3 +241,7 @@ This application aims to make transitioning between files easier and faster, by 
 | export (selected or choose)                   | `shift` + `e` |
 | open link                                     | `middle mouse` |
 | open shortcut menu                            | `???` |
+
+## License
+
+See the [LICENSE](LICENSE.md) file for license rights and limitations (MIT).
