@@ -421,7 +421,7 @@
 
 	const handleScroll = (e: WheelEvent) => {
 		const factor = 1.2;
-		const mousePos = new Vec(e.clientX - canvas.offsetLeft, -(e.clientY - canvas.offsetTop));
+		const mousePos = new Vec(e.offsetX, -e.offsetY);
 		const globalMousePos = cameraToGlobal(mousePos, $cameraPos, $zoom);
 
 		if (e.deltaY > 0) {
