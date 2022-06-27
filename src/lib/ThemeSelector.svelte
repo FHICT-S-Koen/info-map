@@ -10,12 +10,31 @@
 		selected = !!ls.theme;
 		theme ? (ls.theme = theme.toLowerCase()) : ls.removeItem("theme");
 
+		updateUIWithPreference(ls);
+	};
+
+	const updateUIWithPreference = (ls: Storage) => {
 		if (
 			ls.theme === "dark" ||
 			(!("theme" in ls) && window.matchMedia("(prefers-color-scheme: dark)").matches)
 		)
 			document.documentElement.classList.add("dark");
 		else document.documentElement.classList.remove("dark");
+	};
+
+	const previewTheme = (theme?: string) => {
+		document.documentElement.classList.remove("dark");
+		if (!theme) {
+			if (window.matchMedia("(prefers-color-scheme: dark)").matches)
+				document.documentElement.classList.add("dark");
+		} else document.documentElement.classList.add(theme?.toLowerCase());
+	};
+
+	const unpreviewTheme = () => {
+		if (!ls) return;
+		document.documentElement.classList.remove("dark");
+
+		updateUIWithPreference(ls);
 	};
 
 	onMount(() => {
@@ -50,6 +69,8 @@
 		>
 			<div
 				on:click={() => setSelectedTheme()}
+				on:mouseenter={() => previewTheme()}
+				on:mouseleave={() => unpreviewTheme()}
 				class="flex cursor-pointer items-center hover:bg-slate-100 dark:hover:bg-slate-700 dark:text-white"
 			>
 				<svg
@@ -69,6 +90,8 @@
 			</div>
 			<div
 				on:click={() => setSelectedTheme("Light")}
+				on:mouseenter={() => previewTheme("Light")}
+				on:mouseleave={() => unpreviewTheme()}
 				class="flex cursor-pointer items-center hover:bg-slate-100 dark:hover:bg-slate-700 dark:text-white"
 			>
 				<svg
@@ -88,6 +111,8 @@
 			</div>
 			<div
 				on:click={() => setSelectedTheme("Dark")}
+				on:mouseenter={() => previewTheme("Dark")}
+				on:mouseleave={() => unpreviewTheme()}
 				class="flex cursor-pointer items-center hover:bg-slate-100 dark:hover:bg-slate-700 dark:text-white"
 			>
 				<svg
