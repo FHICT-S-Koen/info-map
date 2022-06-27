@@ -10,6 +10,10 @@
 		selected = !!ls.theme;
 		theme ? (ls.theme = theme.toLowerCase()) : ls.removeItem("theme");
 
+		updateUIWithPreference(ls);
+	};
+
+	const updateUIWithPreference = (ls: Storage) => {
 		if (
 			ls.theme === "dark" ||
 			(!("theme" in ls) && window.matchMedia("(prefers-color-scheme: dark)").matches)
