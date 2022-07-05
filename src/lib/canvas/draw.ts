@@ -1,6 +1,6 @@
-import { clearCanvas, globalToCamera } from "./utils";
-import type Note from "./note";
-import Vec from "./vec";
+import { clearCanvas, globalToCamera } from "../common/utils";
+import type Note from "../common/models/note";
+import Vec from "../common/vec";
 
 const draw = (canvas: HTMLCanvasElement, cameraPos: Vec, zoom: number, notes: Note[]) => {
 	if (canvas == null) return;

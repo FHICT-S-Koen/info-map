@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { cameraPos, last, startCoords } from "$lib/canvas/stores";
-	import Vec from "./canvas/vec";
+	import Vec from "./common/vec";
 
 	$: x = Math.round($cameraPos.x);
 	$: y = Math.round($cameraPos.y);

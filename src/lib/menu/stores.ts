@@ -1,4 +1,4 @@
-import Vec from "$lib/canvas/vec";
+import Vec from "../common/vec";
 import { writable } from "svelte/store";
 
 export const menuIsOpen = writable(false);

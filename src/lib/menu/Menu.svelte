@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Vec from "$lib/canvas/vec";
-	import Note from "$lib/canvas/note";
+	import Vec from "$lib/common/vec";
+	import Note from "$lib/common/models/note";
 
 	import { cameraPos, notes, zoom } from "$lib/canvas/stores";
-	import { cameraToGlobal } from "$lib/canvas/utils";
+	import { cameraToGlobal } from "$lib/common/utils";
 
 	import { onMount } from "svelte";
 	import { menuIsOpen, menuPos } from "./stores";

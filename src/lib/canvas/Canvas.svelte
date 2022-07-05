@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { cameraPos, last, notes, startCoords, zoom } from "./stores";
 	import { onMount } from "svelte";
-	import Vec from "./vec";
+	import { cameraToGlobal, globalToCamera } from "../common/utils";
+	import Vec from "../common/vec";
 	import draw from "./draw";
-	import { cameraToGlobal, globalToCamera } from "./utils";
 	import Menu from "$lib/menu/Menu.svelte";
 	import { menuIsOpen, menuPos } from "$lib/menu/stores";
 
