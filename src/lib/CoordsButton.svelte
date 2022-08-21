@@ -14,6 +14,6 @@
 
 <button
 	on:click={resetCoords}
-	class="dark:text-slate-500 dark:bg-slate-800 font-bold shadow p-[6px] rounded-md text-slate-500"
+	class="absolute top-2 right-28 bg-white dark:bg-[#454545] font-bold shadow p-[6px] rounded-md"
 	>x: {x}, y: {y}
 </button>

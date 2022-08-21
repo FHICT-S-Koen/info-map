@@ -28,7 +28,7 @@
 <button
 	on:click={() => (active = !active)}
 	on:blur={() => (active = false)}
-	class="dark:bg-slate-800 rounded-md shadow {selected && 'text-blue-400'}"
+	class="absolute top-2 left-2 bg-white dark:bg-[#454545] rounded-md shadow {selected && 'text-blue-400'}"
 >
 	<svg
 		xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +46,7 @@
 	</svg>
 	{#if active}
 		<ul
-			class="absolute z-50 bg-white text-black dark:bg-slate-800 rounded-md w-36 top-full shadow mt-2 py-[6px]"
+			class="absolute z-50 bg-white text-black dark:bg-[#454545] rounded-md w-36 top-full shadow mt-2 py-[6px]"
 		>
 			<div
 				on:click={() => setSelectedTheme()}
@@ -54,7 +54,7 @@
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
-					class="dark:stroke-slate-500 w-6 h-6 mx-2 my-0.5"
+					class="dark:stroke-white w-6 h-6 mx-2 my-0.5"
 					fill="none"
 					viewBox="0 0 24 24"
 					stroke="currentColor"
@@ -73,7 +73,7 @@
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
-					class="dark:stroke-slate-500 w-6 h-6 mx-2 my-0.5"
+					class="dark:stroke-white w-6 h-6 mx-2 my-0.5"
 					fill="none"
 					viewBox="0 0 24 24"
 					stroke="currentColor"
@@ -92,7 +92,7 @@
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
-					class="dark:stroke-slate-500 w-6 h-6 mx-2 my-0.5"
+					class="dark:stroke-white w-6 h-6 mx-2 my-0.5"
 					fill="none"
 					viewBox="0 0 24 24"
 					stroke="currentColor"

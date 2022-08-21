@@ -34,7 +34,7 @@
 
 <button
 	on:click={handleOpen}
-	class="dark:text-slate-500 dark:bg-slate-800 font-bold shadow p-[6px] rounded-md text-slate-500"
+	class="absolute top-2 right-2 bg-white dark:bg-[#454545] font-bold shadow p-[6px] rounded-md"
 >
 	<svg
 		xmlns="http://www.w3.org/2000/svg"

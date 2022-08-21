@@ -10,7 +10,7 @@ const draw = (canvas: HTMLCanvasElement, cameraPos: Vec, zoom: number, notes: No
 		const { width, height } = canvas.getBoundingClientRect();
 
 		clearCanvas(canvas);
-		drawGrid(context, cameraPos, width, height, zoom, "#64748B");
+		drawGrid(context, cameraPos, width, height, zoom, "#454545");
 
 		notes.forEach((note) => drawNoteExample(context, note, cameraPos, zoom));
 	}
@@ -68,12 +68,12 @@ const drawNoteExample = (
 
 	const margin = 3 * zoom;
 
-	context.fillRect(
-		pos.x - margin,
-		-pos.y + margin,
-		note.width * zoom + margin * 2,
-		-note.height * zoom - margin * 2
-	);
+	// context.fillRect(
+	// 	pos.x - margin,
+	// 	-pos.y + margin,
+	// 	note.width * zoom + margin * 2,
+	// 	-note.height * zoom - margin * 2
+	// );
 
 	// stop adding shadow
 	context.shadowColor = "rgba(0,0,0,0)";
@@ -86,10 +86,11 @@ const drawNoteExample = (
 		note.width * zoom + margin * 2,
 		-note.height * zoom - margin * 2
 	); //INFO: -y since it's more intuitive for the user when 0,0 is bottom left
-	context.strokeStyle = note.isSelected ? "#485AFF" : note.bgColor;
+	context.strokeStyle = note.isSelected ? "#485AFF" : "#000000";
 	context.stroke();
 
-	context.fillStyle = "#000000";
+	context.fillStyle = "white";
+	// context.fillStyle = "#000000";
 
 	// draw text
 	context.font = note.fontSize * zoom + "px ubuntu";
